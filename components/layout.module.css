@@ -1,10 +1,19 @@
 .container {
-  max-width: 36rem;
+  max-width: 70rem;
   padding: 0 1rem;
   margin: 3rem auto 6rem;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 5rem auto;
+  grid-template-areas:
+    "navigation article";
+}
+
 .header {
+  grid-area: header;
   display: flex;
   flex-direction: column;
   align-items: center;
