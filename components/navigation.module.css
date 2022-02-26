@@ -1,3 +1,6 @@
 .navigation {
     grid-area: navigation;
+    padding: 1rem;
+    padding-top: 2rem;
+    height:fit-content;
 }
