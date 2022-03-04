@@ -1,18 +1,21 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
+// import { useRouter } from "next/router";
 import {
-  getAllPostIds,
+  // getAllSlugs,
   getPostData,
   getSortedPostsData,
+  getAllPostSlugArray,
 } from "../../lib/posts";
-import Date from "../../components/date";
+// import Date from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
 import Article from "../../components/article";
 import Navigation from "../../components/navigation";
 import Link from "next/link";
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+  const slug = params.slug.join("/");
+  const postData = await getPostData(slug);
   const allPostsData = getSortedPostsData();
   return {
     props: {
@@ -23,7 +26,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const paths = getAllPostSlugArray();
   return {
     paths,
     fallback: false,
@@ -38,9 +41,9 @@ export default function Post({ postData, allPostsData }) {
       </Head>
       <Navigation>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, slug, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
+              <Link href={`/posts/${slug}`}>
                 <a>{title}</a>
               </Link>
               <br />
@@ -51,7 +54,7 @@ export default function Post({ postData, allPostsData }) {
       <Article>
         <h1 className={utilStyles.headingMd}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+          {/* <Date dateString={postData.date} /> */}
         </div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </Article>

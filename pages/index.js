@@ -15,9 +15,9 @@ export default function Home({ allPostsData }) {
 
       <Navigation>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, slug, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
+              <Link href={`/posts/${slug}`}>
                 <a>{title}</a>
               </Link>
               <br />
