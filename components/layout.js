@@ -1,15 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
+import { Button, useColorMode } from "@chakra-ui/react";
 
 const name = "Web Development Notes";
 export const siteTitle = "Web Development Notes";
 
 export default function Layout({ children, home }) {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -18,10 +18,13 @@ export default function Layout({ children, home }) {
         />
         <meta name="og:title" content={siteTitle} />
       </Head>
-      <header className={styles.header}>
-        <h1 className={utilStyles.heading2Xl}>{name}</h1>
+      <header>
+        <h1>{name}</h1>
+        <Button onClick={toggleColorMode}>
+          Toggle {colorMode === "light" ? "Dark" : "Light"}
+        </Button>
       </header>
-      <main className={styles.grid}>{children}</main>
+      <main>{children}</main>
     </div>
   );
 }
