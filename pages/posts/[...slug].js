@@ -39,18 +39,7 @@ export default function Post({ postData, allPostsData }) {
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <Navigation>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, slug, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${slug}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-            </li>
-          ))}
-        </ul>
-      </Navigation>
+      <Navigation allPostsData={allPostsData} />
       <Article>
         <h1 className={utilStyles.headingMd}>{postData.title}</h1>
         <div className={utilStyles.lightText}>

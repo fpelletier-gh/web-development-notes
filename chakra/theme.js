@@ -4,5 +4,23 @@ const config = {
   initialColorMode: "system",
 };
 
-const theme = extendTheme({ config });
+const Container = {
+  baseStyle: {
+    w: "100%",
+    mx: "auto",
+    maxW: "1200px",
+    px: [4, 6],
+    py: [8, 10],
+  },
+  defaultProps: {
+    colorScheme: "gray",
+  },
+};
+
+const theme = extendTheme({
+  components: {
+    Container,
+  },
+  config,
+});
 export default theme;

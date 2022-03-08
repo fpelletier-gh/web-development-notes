@@ -5,8 +5,7 @@ import { getSortedPostsData } from "../lib/posts";
 import Navigation from "../components/navigation";
 import Article from "../components/article";
 
-export default function Home({ allPostsData }) {
-  console.log(allPostsData);
+export default function About({ allPostsData }) {
   return (
     <Layout home>
       <Head>
@@ -14,7 +13,7 @@ export default function Home({ allPostsData }) {
       </Head>
 
       <Navigation allPostsData={allPostsData} />
-      <Article>Home</Article>
+      <Article>About</Article>
     </Layout>
   );
 }
