@@ -1,17 +1,12 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
-// import { useRouter } from "next/router";
 import {
-  // getAllSlugs,
   getPostData,
   getSortedPostsData,
   getAllPostSlugArray,
 } from "../../lib/posts";
-// import Date from "../../components/date";
-import utilStyles from "../../styles/utils.module.css";
-import Article from "../../components/article";
+import { GridItem, Heading } from "@chakra-ui/react";
 import Navigation from "../../components/navigation";
-import Link from "next/link";
 
 export async function getStaticProps({ params }) {
   const slug = params.slug.join("/");
@@ -34,19 +29,19 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ postData, allPostsData }) {
+  const MDWrapper = (props) => <article className="md-wrapper" {...props} />;
   return (
     <Layout>
       <Head>
         <title>{postData.title}</title>
       </Head>
       <Navigation allPostsData={allPostsData} />
-      <Article>
-        <h1 className={utilStyles.headingMd}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
-          {/* <Date dateString={postData.date} /> */}
-        </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-      </Article>
+      <GridItem as="main" colSpan={5} p={2} pl={6} w="100%">
+        <Heading as="h2" size="md" mb={4}>
+          {postData.title}
+        </Heading>
+        <MDWrapper dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </GridItem>
     </Layout>
   );
 }

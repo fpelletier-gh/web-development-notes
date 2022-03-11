@@ -3,6 +3,7 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
+  Grid,
   Button,
   useColorMode,
   Container,
@@ -21,7 +22,7 @@ export function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex as="header">
-      <Heading as="h1" my="4">
+      <Heading as="h1" my={4} mx={2}>
         {name}
       </Heading>
       <Spacer />
@@ -54,7 +55,7 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <Header />
-      <main>{children}</main>
+      <Grid templateColumns="repeat(6, 1fr)">{children}</Grid>
     </Container>
   );
 }

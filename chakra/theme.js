@@ -17,10 +17,40 @@ const Container = {
   },
 };
 
+const Link = {
+  baseStyle: {
+    textDecoration: "none",
+    _hover: {
+      textDecoration: "none",
+      // fontWeight: "bold",
+    },
+  },
+};
+
+const global = {
+  ".md-wrapper": {
+    h1: {
+      fontSize: "xl",
+      mb: "4",
+    },
+    a: {
+      textDecoration: "none",
+      _hover: {
+        textDecoration: "none",
+        // fontWeight: "bold",
+      },
+    },
+  },
+};
+
 const theme = extendTheme({
   components: {
     Container,
+    Link,
   },
   config,
+  styles: {
+    global,
+  },
 });
 export default theme;
