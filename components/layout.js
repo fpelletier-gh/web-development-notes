@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import NextLink from "next/link";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
@@ -8,8 +7,6 @@ import {
   useColorMode,
   Container,
   Heading,
-  Text,
-  Divider,
   Flex,
   Spacer,
   Link,
@@ -43,7 +40,7 @@ export function Header() {
   );
 }
 
-export default function Layout({ children, home }) {
+export default function Layout({ children }) {
   return (
     <Container>
       <Head>

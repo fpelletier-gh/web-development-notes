@@ -1,21 +1,25 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
-import { getSortedPostsData } from "../lib/posts";
-// import Link from "next/link";
+import { getMenuData } from "../lib/posts";
 import Navigation from "../components/navigation";
-import Article from "../components/article";
 import { GridItem } from "@chakra-ui/react";
 
-export default function Home({ allPostsData }) {
-  console.log(allPostsData);
+export default function Home({ menuData }) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
 
-      <Navigation allPostsData={allPostsData} />
-      <GridItem as="main" colSpan={5} p={2} pl={6} w="100%">
+      <Navigation menus={menuData} />
+      <GridItem
+        as="main"
+        colSpan={5}
+        p={2}
+        pl={6}
+        w="100%"
+        borderLeft="1px solid gray"
+      >
         Home
       </GridItem>
     </Layout>
@@ -23,10 +27,10 @@ export default function Home({ allPostsData }) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const menuData = getMenuData();
   return {
     props: {
-      allPostsData,
+      menuData,
     },
   };
 }
