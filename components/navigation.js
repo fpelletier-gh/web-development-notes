@@ -1,8 +1,15 @@
 import NextLink from "next/link";
 import { useState } from "react";
 import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { Box, Button, UnorderedList, ListItem, Link } from "@chakra-ui/react";
-export default function Navigation({ menus }) {
+import {
+  Box,
+  Button,
+  UnorderedList,
+  ListItem,
+  Link,
+  GridItem,
+} from "@chakra-ui/react";
+function CreateNavigationList({ menus }) {
   const [activeMenus, setActiveMenus] = useState([]);
 
   const handleSubmenuClick = (menuName) => {
@@ -26,15 +33,16 @@ export default function Navigation({ menus }) {
       <ListItem>
         {!hasSubMenu && (
           <Box display="block" w="100%" dept={dept}>
-            <NextLink href={data.url} passHref>
+            <NextLink href={`/posts/${data.url}`} passHref>
               <Link fontWeight="semibold">{data.title}</Link>
             </NextLink>
           </Box>
         )}{" "}
         {hasSubMenu && (
-          <Box display="block" w="100%" dept={dept}>
+          <Box display="block" w="100%" pb="0.2rem" dept={dept}>
             <Button
               colorScheme="gray.800"
+              size="lg"
               variant="link"
               onClick={() => handleSubmenuClick(menuName)}
             >
@@ -104,5 +112,13 @@ export default function Navigation({ menus }) {
         );
       })}
     </UnorderedList>
+  );
+}
+
+export default function Navigation({ menus }) {
+  return (
+    <GridItem as="nav" colSpan={2} py={1} w="100%">
+      <CreateNavigationList menus={menus} />
+    </GridItem>
   );
 }
