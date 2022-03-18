@@ -2,7 +2,7 @@ import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import { getMenuData } from "../lib/posts";
 import Navigation from "../components/navigation";
-import { GridItem } from "@chakra-ui/react";
+import { GridItem, Heading } from "@chakra-ui/react";
 
 export default function Home({ menuData }) {
   return (
@@ -20,7 +20,9 @@ export default function Home({ menuData }) {
         w="100%"
         borderLeft="1px solid gray"
       >
-        Home
+        <Heading as="h2" size="md" mb={4}>
+          Home
+        </Heading>
       </GridItem>
     </Layout>
   );

@@ -4,7 +4,7 @@ import { getMenuData } from "../lib/posts";
 import Navigation from "../components/navigation";
 import { GridItem, Heading } from "@chakra-ui/react";
 
-export default function About({ menuData }) {
+export default function Contact({ menuData }) {
   return (
     <Layout home>
       <Head>
@@ -21,7 +21,7 @@ export default function About({ menuData }) {
         borderLeft="1px solid gray"
       >
         <Heading as="h2" size="md" mb={4}>
-          About Page
+          Contact Page
         </Heading>
       </GridItem>
     </Layout>

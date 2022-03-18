@@ -19,18 +19,22 @@ export function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex as="header">
-      <Heading as="h1" my={4} mx={2}>
-        {name}
-      </Heading>
-      <Spacer />
       <NextLink href="/" passHref>
-        <Link m="4" alignSelf="center" fontWeight="bold">
-          Home
+        <Link>
+          <Heading as="h1" my={4} mx={2}>
+            {name}
+          </Heading>
         </Link>
       </NextLink>
+      <Spacer />
       <NextLink href="/about" passHref>
         <Link m="4" alignSelf="center" fontWeight="bold">
           About
+        </Link>
+      </NextLink>
+      <NextLink href="/contact" passHref>
+        <Link m="4" alignSelf="center" fontWeight="bold">
+          Contact
         </Link>
       </NextLink>
       <Button onClick={toggleColorMode} alignSelf="center" bg="transparent">
@@ -52,7 +56,9 @@ export default function Layout({ children }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <Header />
-      <Grid templateColumns="repeat(6, 1fr)">{children}</Grid>
+      <Grid templateColumns="repeat(10, 1fr)" gridColumnGap={4}>
+        {children}
+      </Grid>
     </Container>
   );
 }

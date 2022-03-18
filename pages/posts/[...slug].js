@@ -34,7 +34,7 @@ export default function Post({ postData, menuData }) {
       <Navigation menus={menuData} />
       <GridItem
         as="main"
-        colSpan={5}
+        colSpan={7}
         p={2}
         pl={6}
         w="100%"
