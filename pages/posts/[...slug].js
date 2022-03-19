@@ -2,6 +2,9 @@ import Layout from "../../components/layout";
 import Head from "next/head";
 import { getPostData, getAllPostSlugArray, getMenuData } from "../../lib/posts";
 import { GridItem, Heading } from "@chakra-ui/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import Navigation from "../../components/navigation";
 
 export async function getStaticProps({ params }) {
@@ -25,7 +28,6 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ postData, menuData }) {
-  const MDWrapper = (props) => <article className="md-wrapper" {...props} />;
   return (
     <Layout>
       <Head>
@@ -43,7 +45,14 @@ export default function Post({ postData, menuData }) {
         <Heading as="h2" size="md" mb={4}>
           {postData.title}
         </Heading>
-        <MDWrapper dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <ReactMarkdown
+          components={ChakraUIRenderer()}
+          remarkPlugins={[remarkGfm]}
+          skipHtml
+        >
+          {postData.contentHtml}
+        </ReactMarkdown>
+        {/* <MDWrapper dangerouslySetInnerHTML={{ __html: postData.contentHtml }} /> */}
       </GridItem>
     </Layout>
   );

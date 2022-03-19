@@ -22,24 +22,17 @@ const Link = {
     textDecoration: "none",
     _hover: {
       textDecoration: "none",
-      // fontWeight: "bold",
     },
   },
 };
 
+const Code = {
+  baseStyle: {},
+};
+
 const global = {
-  ".md-wrapper": {
-    h1: {
-      fontSize: "xl",
-      mb: "4",
-    },
-    a: {
-      textDecoration: "none",
-      _hover: {
-        textDecoration: "none",
-        // fontWeight: "bold",
-      },
-    },
+  p: {
+    pb: "1.1rem",
   },
 };
 
@@ -47,6 +40,7 @@ const theme = extendTheme({
   components: {
     Container,
     Link,
+    Code,
   },
   config,
   styles: {

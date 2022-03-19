@@ -3,91 +3,91 @@ title: "Git Cheat Sheet"
 date: "2020-01-01"
 ---
 
-# Git Cheat Sheet
+##### General command
 
-Get documentation for a command:
+Get documentation for a command:   
 `$ git help [command]`
 
-Setting user name and email:
-`$ git config --global user.name "Name"`
-`$ git config --global user.email [email]`
+Setting user name and email:  
+`$ git config --global user.name "Name"`  
+`$ git config --global user.email [email]`  
 
-Initializing a new git repository:
+Initializing a new git repository:  
 `$ git init`
 
-Brief summary of the situation:
+Brief summary of the situation:  
 `$ git status`
 
-Showing a list of everything across all branch
+Showing a list of everything across all branch  
 `$ git reflog`
 
-Going back in time
+Going back in time  
 `$ git reset HEAD@{index}`
 
-### Adding file
+##### Adding file
 
-Adding all new files or modified files under the current directory:
+Adding all new files or modified files under the current directory:  
 `$ git add .`
 
-Adding files:
+Adding files:  
 `$ git add file1 file2 file3`
 
-See what is about to be committed:
+See what is about to be committed:  
 `$ git diff --cached`
 
-### Commit
+##### Commit
 
-Committing changes:
+Committing changes:  
 `$ git commit`
 
-Adding and committing all modified files (not new one):
+Adding and committing all modified files (not new one):  
 `$ git commit -a`
 
-Changing the message on last commit
+Changing the message on last commit  
 `$ git commit --amend`
 
-Adding to the last commit
+Adding to the last commit  
 `$ git commit --amend --no-edit`
 
-### Project history
+##### Project history
 
-Project history:
+Project history:  
 `$ git log`
 
-Project history with diff:
+Project history with diff:  
 `$ git log -p`
 
-Project history summary:
+Project history summary:  
 `$ git log --stat --summary`
 
-### Branching
+##### Branching
 
-Creating a new branch:
+Creating a new branch:  
 `$ git branch [branch]`
 
-Listing all existing branches:
+Listing all existing branches:  
 `$ git branch`
 
-Switching to a branch:
+Switching to a branch:  
 `$ git switch [branch]`
 
-Deleting branch
+Deleting branch  
 `$ git branch -d [branch]`
 
-### Merging
+##### Merging
 
-Merging a branch:
+Merging a branch:  
 `$ git merge [branch]`
 
-Showing the conflict:
+Showing the conflict:  
 `$ git diff`
 
-Commit after resolving the conflicts:
+Commit after resolving the conflicts:  
 `$ git commit -a`
 
-Graphical representation of the resulting history:
+Graphical representation of the resulting history:  
 `gitk`
 
-Delete the merged branch
+Delete the merged branch  
 
-### Pulling change 
+##### Pulling change 
