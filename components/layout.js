@@ -1,63 +1,123 @@
 import Head from "next/head";
 import NextLink from "next/link";
 import Navigation from "./navigation";
-import { useState } from "react";
-import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { useRef } from "react";
+import { MoonIcon, SunIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Grid,
   Button,
+  Center,
   useColorMode,
   Container,
   Heading,
   Flex,
   Spacer,
   Link,
-  Box,
+  GridItem,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 const name = "Web Development Notes";
 export const siteTitle = "Web Development Notes";
 
-function MenuToggle({ toggle, isOpen }) {
+function MenuDrawer({ menuData }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
+
   return (
-    <Box
-      display={{ base: "block", md: "none" }}
-      alignSelf="center"
-      onClick={toggle}
-    >
-      {isOpen ? <CloseIcon /> : <HamburgerIcon size="xl" />}
-    </Box>
+    <>
+      <Button
+        as="Center"
+        ref={btnRef}
+        display={{ base: "block", md: "none" }}
+        alignSelf="center"
+        onClick={onOpen}
+        p="2"
+        variant="outline"
+      >
+        <HamburgerIcon h="100%" w="100%" />
+      </Button>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>{name}</DrawerHeader>
+
+          <DrawerBody>
+            <Navigation menus={menuData} />
+          </DrawerBody>
+
+          <DrawerFooter display="flex">
+            <NextLink href="/about" passHref>
+              <Link m="4" alignSelf="left" fontWeight="bold">
+                About
+              </Link>
+            </NextLink>
+            <NextLink href="/contact" passHref>
+              <Link m="4" alignSelf="left" fontWeight="bold">
+                Contact
+              </Link>
+            </NextLink>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 }
 
-function Header() {
+function Header({ menuData }) {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
   return (
     <Flex as="header">
       <NextLink href="/" passHref>
         <Link>
-          <Heading as="h1" size="lg" my={4} mx={2}>
+          <Heading as="h1" fontSize={{ base: "md", md: "xl" }} my={4} mx={2}>
             {name}
           </Heading>
         </Link>
       </NextLink>
       <Spacer />
       <NextLink href="/about" passHref>
-        <Link m="4" alignSelf="center" fontWeight="bold">
+        <Link
+          display={{ base: "none", md: "block" }}
+          m="4"
+          alignSelf="center"
+          fontWeight="bold"
+        >
           About
         </Link>
       </NextLink>
       <NextLink href="/contact" passHref>
-        <Link m="4" alignSelf="center" fontWeight="bold">
+        <Link
+          display={{ base: "none", md: "block" }}
+          m="4"
+          alignSelf="center"
+          fontWeight="bold"
+        >
           Contact
         </Link>
       </NextLink>
-      <Button onClick={toggleColorMode} alignSelf="center" bg="transparent">
+      <Button
+        onClick={toggleColorMode}
+        alignSelf="center"
+        bg="transparent"
+        _hover={{ background: "transparent" }}
+      >
         {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
       </Button>
-      <MenuToggle toggle={toggle} isOpen={isOpen} />
+      <MenuDrawer menuData={menuData} />
     </Flex>
   );
 }
@@ -73,11 +133,27 @@ export default function Layout({ children, menuData }) {
         />
         <meta name="og:title" content={siteTitle} />
       </Head>
-      <Header />
-      <Grid templateColumns="repeat(10, 1fr)" gridColumnGap={4}>
+      <Header menuData={menuData} />
+      <Grid
+        display={{ base: "none", md: "grid" }}
+        templateColumns="repeat(10, 1fr)"
+        gridColumnGap={4}
+      >
         <Navigation menus={menuData} />
-        {children}
+        <GridItem
+          as="main"
+          colSpan={5}
+          p={2}
+          pl={6}
+          w="100%"
+          borderLeft={{ base: "none", md: "1px solid gray" }}
+        >
+          {children}
+        </GridItem>
       </Grid>
+      <Center display={{ base: "block", md: "none" }} p={2} w="100%">
+        {children}
+      </Center>
     </Container>
   );
 }

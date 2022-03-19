@@ -10,10 +10,20 @@ const Container = {
     mx: "auto",
     maxW: "1200px",
     px: [4, 6],
-    py: [8, 10],
+    py: [2, 4],
   },
   defaultProps: {
     colorScheme: "gray",
+  },
+};
+
+const Button = {
+  variants: {
+    link: {
+      _hover: {
+        textDecoration: "none",
+      },
+    },
   },
 };
 
@@ -39,6 +49,7 @@ const global = {
 const theme = extendTheme({
   components: {
     Container,
+    Button,
     Link,
     Code,
   },
