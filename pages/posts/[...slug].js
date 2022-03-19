@@ -29,11 +29,10 @@ export async function getStaticPaths() {
 
 export default function Post({ postData, menuData }) {
   return (
-    <Layout>
+    <Layout menuData={menuData}>
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <Navigation menus={menuData} />
       <GridItem
         as="main"
         colSpan={7}

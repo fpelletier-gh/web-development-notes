@@ -6,12 +6,11 @@ import { GridItem, Heading } from "@chakra-ui/react";
 
 export default function Contact({ menuData }) {
   return (
-    <Layout home>
+    <Layout menuData={menuData}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
 
-      <Navigation menus={menuData} />
       <GridItem
         as="main"
         colSpan={5}
