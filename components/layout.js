@@ -80,11 +80,11 @@ function MenuDrawer({ menuData }) {
 function Header({ menuData }) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Flex as="header">
+    <Flex as="header" boxShadow="base" px={2}>
       <NextLink href="/" passHref>
         <Link>
           <Heading as="h1" fontSize={{ base: "md", md: "xl" }} my={4} mx={2}>
-            {name}
+            <span color="blue.600">Web Development</span> Notes
           </Heading>
         </Link>
       </NextLink>
@@ -124,7 +124,7 @@ function Header({ menuData }) {
 
 export default function Layout({ children, menuData }) {
   return (
-    <Container>
+    <Container pt="0">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -137,21 +137,15 @@ export default function Layout({ children, menuData }) {
       <Grid
         display={{ base: "none", md: "grid" }}
         templateColumns="repeat(10, 1fr)"
-        gridColumnGap={4}
       >
-        <Navigation menus={menuData} />
-        <GridItem
-          as="main"
-          colSpan={5}
-          p={2}
-          pl={6}
-          w="100%"
-          borderLeft={{ base: "none", md: "1px solid gray" }}
-        >
+        <GridItem as="nav" colSpan={2} pr={6} py={4} w="100%">
+          <Navigation menus={menuData} />
+        </GridItem>
+        <GridItem as="main" colSpan={5} p={4} pl={6} w="100%">
           {children}
         </GridItem>
       </Grid>
-      <Center display={{ base: "block", md: "none" }} p={2} w="100%">
+      <Center display={{ base: "block", md: "none" }} p={4} w="100%">
         {children}
       </Center>
     </Container>
