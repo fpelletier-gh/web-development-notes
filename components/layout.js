@@ -1,12 +1,13 @@
 import Head from "next/head";
 import NextLink from "next/link";
 import Navigation from "./navigation";
+import { mode } from "@chakra-ui/theme-tools";
 import { useRef } from "react";
-import { MoonIcon, SunIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
+  chakra,
   Grid,
   Button,
-  Center,
   useColorMode,
   Container,
   Heading,
@@ -20,11 +21,9 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
 
-const name = "Web Development Notes";
 export const siteTitle = "Web Development Notes";
 
 function MenuDrawer({ menuData }) {
@@ -34,7 +33,6 @@ function MenuDrawer({ menuData }) {
   return (
     <>
       <Button
-        as="Center"
         ref={btnRef}
         display={{ base: "block", md: "none" }}
         alignSelf="center"
@@ -52,21 +50,30 @@ function MenuDrawer({ menuData }) {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>{name}</DrawerHeader>
+          <DrawerHeader>
+            <Flex alignItems="center">
+              <LogoSpan border="none">Web Dev</LogoSpan> Notes
+              <Spacer />
+              <Button bg="transparent" onClick={onClose}>
+                <CloseIcon w={4} h={4} />
+              </Button>
+            </Flex>
+          </DrawerHeader>
 
           <DrawerBody>
-            <Navigation menus={menuData} />
+            <Container overflowY="auto">
+              <Navigation menus={menuData} />
+            </Container>
           </DrawerBody>
 
-          <DrawerFooter display="flex">
+          <DrawerFooter display="flex" justifyContent="space-evenly">
             <NextLink href="/about" passHref>
-              <Link m="4" alignSelf="left" fontWeight="bold">
+              <Link m="4" fontWeight="bold">
                 About
               </Link>
             </NextLink>
             <NextLink href="/contact" passHref>
-              <Link m="4" alignSelf="left" fontWeight="bold">
+              <Link m="4" fontWeight="bold">
                 Contact
               </Link>
             </NextLink>
@@ -77,17 +84,27 @@ function MenuDrawer({ menuData }) {
   );
 }
 
+const LogoSpan = chakra("span", {
+  baseStyle: (props) => ({
+    color: mode("blue.600", "blue.300")(props),
+    borderColor: mode("blue.600", "blue.300")(props),
+    borderWidth: "2px",
+    borderRadius: "md",
+    px: "0.3rem",
+  }),
+});
+
 function Header({ menuData }) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Flex as="header" boxShadow="base" px={2}>
-      <NextLink href="/" passHref>
-        <Link>
-          <Heading as="h1" fontSize={{ base: "md", md: "xl" }} my={4} mx={2}>
-            <span color="blue.600">Web Development</span> Notes
-          </Heading>
-        </Link>
-      </NextLink>
+    <Flex as="header" boxShadow="base" px={2} mb={4}>
+      <Heading as="h1" fontSize={{ base: "md", md: "2xl" }} my={4} mx={2}>
+        <NextLink href="/" passHref>
+          <Link>
+            <LogoSpan>Web Dev</LogoSpan> Notes
+          </Link>
+        </NextLink>
+      </Heading>
       <Spacer />
       <NextLink href="/about" passHref>
         <Link
@@ -145,9 +162,14 @@ export default function Layout({ children, menuData }) {
           {children}
         </GridItem>
       </Grid>
-      <Center display={{ base: "block", md: "none" }} p={4} w="100%">
+      <Container
+        as="main"
+        display={{ base: "block", md: "none" }}
+        p={4}
+        w="100%"
+      >
         {children}
-      </Center>
+      </Container>
     </Container>
   );
 }

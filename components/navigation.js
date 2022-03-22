@@ -34,7 +34,9 @@ function CreateNavigationList({ menus }) {
         {!hasSubMenu && (
           <Box display="block" w="100%" dept={dept}>
             <NextLink href={`/posts/${data.url}`} passHref>
-              <Link fontWeight="semibold">{data.title}</Link>
+              <Link fontWeight="semibold" w={"100%"}>
+                {data.title}
+              </Link>
             </NextLink>
           </Box>
         )}{" "}
@@ -43,6 +45,8 @@ function CreateNavigationList({ menus }) {
             <Button
               colorScheme="gray.800"
               size="lg"
+              w="100%"
+              justifyContent="left"
               variant="link"
               onClick={() => handleSubmenuClick(menuName)}
             >

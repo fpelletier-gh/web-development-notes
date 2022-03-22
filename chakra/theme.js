@@ -50,14 +50,17 @@ const Code = {
   baseStyle: {
     borderRadius: "md",
     mb: "0.2rem",
+    display: "block",
+    whiteSpace: "pre",
+    "overflow-y": "auto",
   },
 };
 
 const Heading = {
-  baseStyle: {},
+  baseStyle: { fontSize: "xl" },
 };
 
-const global = {
+const global = (props) => ({
   "html, body": {
     letterSpacing: "wider",
     lineHeight: "tall",
@@ -65,10 +68,15 @@ const global = {
   p: {
     pb: "1.1rem",
   },
-  "h2, h3, h4, h5": (props) => ({
+  h2: {
+    fontSize: "4xl",
     color: mode("blue.600", "blue.300")(props),
-  }),
-};
+    pb: "1rem",
+  },
+  h5: {
+    color: mode("blue.600", "blue.300")(props),
+  },
+});
 
 const theme = extendTheme({
   components: {
