@@ -1,0 +1,31 @@
+import {
+  Heading,
+  Code,
+  Text,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+} from "@chakra-ui/react";
+
+export const components = {
+  h1: Heading,
+  h2: Heading,
+  h3: Heading,
+  h4: Heading,
+  h5: Heading,
+  p: Text,
+  code: Code,
+  table: Table,
+  tr: Tr,
+  td: Td,
+  th: Th,
+  caption: TableCaption,
+  thead: Thead,
+  tbody: Tbody,
+  tfoot: Tfoot,
+};
