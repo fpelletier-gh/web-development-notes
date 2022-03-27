@@ -1,6 +1,8 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import { getPostData, getAllPostSlugArray, getMenuData } from "../../lib/posts";
 import { Container } from "@chakra-ui/react";
@@ -15,7 +17,7 @@ export async function getStaticProps({ params }) {
   const mdxSource = await serialize(postData.fileContents, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypePrism],
+      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
     },
     parseFrontmatter: true,
   });
