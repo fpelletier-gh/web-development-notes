@@ -3,7 +3,7 @@ import Head from "next/head";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import { getPostData, getAllPostSlugArray, getMenuData } from "../../lib/posts";
-import { Heading } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { components } from "../../components/mdxComponents";
@@ -42,10 +42,9 @@ export default function Post({ postData, menuData }) {
       <Head>
         <title>{postData.frontmatter.title}</title>
       </Head>
-      <Heading as="h2" size="md" mb={4}>
-        {postData.frontmatter.title}
-      </Heading>
-      <MDXRemote {...postData} components={components} />
+      <Container w="100%">
+        <MDXRemote {...postData} components={components} />
+      </Container>
     </Layout>
   );
 }

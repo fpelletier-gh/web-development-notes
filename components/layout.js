@@ -1,8 +1,8 @@
 import Head from "next/head";
 import NextLink from "next/link";
 import Navigation from "./navigation";
-import { mode } from "@chakra-ui/theme-tools";
 import { useRef } from "react";
+import { useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   chakra,
@@ -62,7 +62,7 @@ function MenuDrawer({ menuData }) {
 
           <DrawerBody>
             <Container overflowY="auto">
-              <Navigation menus={menuData} />
+              <Navigation menus={menuData} close={onClose} />
             </Container>
           </DrawerBody>
 
@@ -84,20 +84,25 @@ function MenuDrawer({ menuData }) {
   );
 }
 
-const LogoSpan = chakra("span", {
-  baseStyle: (props) => ({
-    color: mode("blue.600", "blue.300")(props),
-    borderColor: mode("blue.600", "blue.300")(props),
-    borderWidth: "2px",
-    borderRadius: "md",
-    px: "0.3rem",
-  }),
-});
+function LogoSpan(props) {
+  const color = useColorModeValue("blue.600", "blue.300");
+  return (
+    <chakra.span
+      as="span"
+      color={color}
+      borderColor={color}
+      borderWidth="2px"
+      borderRadius="md"
+      px="0.3rem"
+      {...props}
+    />
+  );
+}
 
 function Header({ menuData }) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Flex as="header" boxShadow="base" px={2} mb={4}>
+    <Flex as="header" boxShadow="base" px={2}>
       <Heading as="h1" fontSize={{ base: "md", md: "2xl" }} my={4} mx={2}>
         <NextLink href="/" passHref>
           <Link>
@@ -155,10 +160,19 @@ export default function Layout({ children, menuData }) {
         display={{ base: "none", md: "grid" }}
         templateColumns="repeat(10, 1fr)"
       >
-        <GridItem as="nav" colSpan={2} pr={6} py={4} w="100%">
+        <GridItem
+          as="nav"
+          minH="90vh"
+          // bg={useColorModeValue("gray.50", "gray.800")}
+          boxShadow="base"
+          colSpan={2}
+          pr={6}
+          py={4}
+          w="100%"
+        >
           <Navigation menus={menuData} />
         </GridItem>
-        <GridItem as="main" colSpan={5} p={4} pl={6} w="100%">
+        <GridItem as="main" colSpan={8} p={4} pt={6} pl={6}>
           {children}
         </GridItem>
       </Grid>

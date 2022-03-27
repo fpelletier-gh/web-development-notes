@@ -10,6 +10,7 @@ pre[class*="language-"] {
 	font-family: Roboto Mono, monospace;
 	font-size: 1em;
 	line-height: 1.5em;
+	border-radius: 0.2em;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;

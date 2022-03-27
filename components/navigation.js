@@ -1,6 +1,7 @@
 import NextLink from "next/link";
 import { useState } from "react";
-import { ChevronRightIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { useColorModeValue } from "@chakra-ui/react";
+import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -9,7 +10,7 @@ import {
   Link,
   GridItem,
 } from "@chakra-ui/react";
-function CreateNavigationList({ menus }) {
+function CreateNavigationList({ menus, close }) {
   const [activeMenus, setActiveMenus] = useState([]);
 
   const handleSubmenuClick = (menuName) => {
@@ -29,19 +30,26 @@ function CreateNavigationList({ menus }) {
 
   const ListMenu = ({ dept, data, hasSubMenu, menuName, menuIndex }) => {
     const isActive = activeMenus.includes(menuName);
+    const color = useColorModeValue("blue.600", "blue.300");
     return (
       <ListItem>
         {!hasSubMenu && (
-          <Box display="block" w="100%" dept={dept}>
+          <Box
+            display="block"
+            borderLeft="2px solid"
+            borderColor={color}
+            w="100%"
+            dept={dept}
+          >
             <NextLink href={`/posts/${data.url}`} passHref>
-              <Link fontWeight="semibold" w={"100%"}>
+              <Link fontWeight="semibold" w={"100%"} pl="2">
                 {data.title}
               </Link>
             </NextLink>
           </Box>
         )}{" "}
         {hasSubMenu && (
-          <Box display="block" w="100%" pb="0.2rem" dept={dept}>
+          <Box display="block" w="100%" py="0.3rem" dept={dept}>
             <Button
               colorScheme="gray.800"
               size="lg"
@@ -52,9 +60,9 @@ function CreateNavigationList({ menus }) {
             >
               {data.title}
               {isActive ? (
-                <ChevronDownIcon ml="0.2rem" />
+                <ChevronUpIcon ml="0.2rem" />
               ) : (
-                <ChevronRightIcon ml="0.2rem" />
+                <ChevronDownIcon ml="0.2rem" />
               )}
             </Button>
           </Box>

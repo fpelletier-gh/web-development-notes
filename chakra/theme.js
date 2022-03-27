@@ -48,16 +48,9 @@ const Link = {
 
 const Code = {
   baseStyle: {
-    borderRadius: "md",
-    mb: "0.2rem",
-    display: "block",
-    whiteSpace: "pre",
+    borderRadius: "sm",
     "overflow-y": "auto",
   },
-};
-
-const Heading = {
-  baseStyle: { fontSize: "xl" },
 };
 
 const global = (props) => ({
@@ -84,7 +77,6 @@ const theme = extendTheme({
     Button,
     Link,
     Code,
-    Heading,
   },
   config,
   styles: {
