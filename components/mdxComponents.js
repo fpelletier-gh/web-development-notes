@@ -1,5 +1,4 @@
 import {
-  Link,
   Heading,
   Code,
   Text,
@@ -13,25 +12,10 @@ import {
   TableCaption,
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
-import NextLink from "next/link";
+import ActiveLink from "./ActiveLink";
 
 const lightModeHeadingColor = "blue.600";
 const darkModeHeadingColor = "blue.300";
-
-const CustomLink = (props) => {
-  const href = props.href;
-  const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
-
-  if (isInternalLink) {
-    return (
-      <NextLink href={href} passHref>
-        <Link {...props}>{props.children}</Link>
-      </NextLink>
-    );
-  }
-
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
-};
 
 function MdxHeadingXXLarge(props) {
   const headingColor = useColorModeValue(
@@ -84,7 +68,7 @@ function MdxCode(props) {
 }
 
 export const components = {
-  a: CustomLink,
+  a: ActiveLink,
   h1: MdxHeadingXXLarge,
   h2: MdxHeadingXLarge,
   h3: MdxHeadingLarge,

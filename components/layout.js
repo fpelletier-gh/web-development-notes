@@ -1,6 +1,7 @@
 import Head from "next/head";
 import NextLink from "next/link";
 import Navigation from "./navigation";
+import ActiveLink from "./ActiveLink";
 import { useRef } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -62,21 +63,17 @@ function MenuDrawer({ menuData }) {
 
           <DrawerBody>
             <Container overflowY="auto">
-              <Navigation menus={menuData} close={onClose} />
+              <Navigation menus={menuData} />
             </Container>
           </DrawerBody>
 
           <DrawerFooter display="flex" justifyContent="space-evenly">
-            <NextLink href="/about" passHref>
-              <Link m="4" fontWeight="bold">
-                About
-              </Link>
-            </NextLink>
-            <NextLink href="/contact" passHref>
-              <Link m="4" fontWeight="bold">
-                Contact
-              </Link>
-            </NextLink>
+            <ActiveLink href="/about" m="4" fontWeight="bold">
+              About
+            </ActiveLink>
+            <ActiveLink href="/contact" m="4" fontWeight="bold">
+              Contact
+            </ActiveLink>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -111,26 +108,24 @@ function Header({ menuData }) {
         </NextLink>
       </Heading>
       <Spacer />
-      <NextLink href="/about" passHref>
-        <Link
-          display={{ base: "none", md: "block" }}
-          m="4"
-          alignSelf="center"
-          fontWeight="bold"
-        >
-          About
-        </Link>
-      </NextLink>
-      <NextLink href="/contact" passHref>
-        <Link
-          display={{ base: "none", md: "block" }}
-          m="4"
-          alignSelf="center"
-          fontWeight="bold"
-        >
-          Contact
-        </Link>
-      </NextLink>
+      <ActiveLink
+        href="/about"
+        display={{ base: "none", md: "block" }}
+        m="4"
+        alignSelf="center"
+        fontWeight="bold"
+      >
+        About
+      </ActiveLink>
+      <ActiveLink
+        href="/contact"
+        display={{ base: "none", md: "block" }}
+        m="4"
+        alignSelf="center"
+        fontWeight="bold"
+      >
+        Contact
+      </ActiveLink>
       <Button
         onClick={toggleColorMode}
         alignSelf="center"
@@ -163,8 +158,7 @@ export default function Layout({ children, menuData }) {
         <GridItem
           as="nav"
           minH="90vh"
-          // bg={useColorModeValue("gray.50", "gray.800")}
-          boxShadow="base"
+          boxShadow="5px 3px 9px -10px"
           colSpan={2}
           pr={6}
           py={4}

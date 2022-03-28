@@ -1,4 +1,4 @@
-import NextLink from "next/link";
+import ActiveLink from "../components/ActiveLink";
 import { useState } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
@@ -7,10 +7,10 @@ import {
   Button,
   UnorderedList,
   ListItem,
-  Link,
   GridItem,
 } from "@chakra-ui/react";
-function CreateNavigationList({ menus, close }) {
+
+function CreateNavigationList({ menus }) {
   const [activeMenus, setActiveMenus] = useState([]);
 
   const handleSubmenuClick = (menuName) => {
@@ -30,22 +30,26 @@ function CreateNavigationList({ menus, close }) {
 
   const ListMenu = ({ dept, data, hasSubMenu, menuName, menuIndex }) => {
     const isActive = activeMenus.includes(menuName);
-    const color = useColorModeValue("blue.600", "blue.300");
+    const blue = useColorModeValue("blue.600", "blue.300");
+
     return (
       <ListItem>
         {!hasSubMenu && (
           <Box
             display="block"
             borderLeft="2px solid"
-            borderColor={color}
+            borderColor={blue}
             w="100%"
             dept={dept}
           >
-            <NextLink href={`/posts/${data.url}`} passHref>
-              <Link fontWeight="semibold" w={"100%"} pl="2">
-                {data.title}
-              </Link>
-            </NextLink>
+            <ActiveLink
+              href={`/posts/${data.url}`}
+              fontWeight="semibold"
+              w={"100%"}
+              pl="2"
+            >
+              {data.title}
+            </ActiveLink>
           </Box>
         )}{" "}
         {hasSubMenu && (

@@ -1,5 +1,6 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -39,8 +40,10 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ postData, menuData }) {
+  const router = useRouter();
+  console.log(router.asPath);
   return (
-    <Layout menuData={menuData}>
+    <Layout menuData={menuData} router={router}>
       <Head>
         <title>{postData.frontmatter.title}</title>
       </Head>
