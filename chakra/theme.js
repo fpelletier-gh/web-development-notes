@@ -39,12 +39,21 @@ const Link = {
   baseStyle: (props) => ({
     letterSpacing: "widest",
     textDecoration: "none",
-    _hover: {
-      textDecoration: "none",
-      borderColor: mode("blue.600", "blue.300")(props),
-      color: mode("blue.600", "blue.300")(props),
-    },
   }),
+  variants: {
+    navigation: (props) => ({
+      _hover: {
+        textDecoration: "none",
+        borderColor: mode("blue.600", "blue.300")(props),
+        color: mode("blue.600", "blue.300")(props),
+      },
+    }),
+    logo: {
+      _hover: {
+        textDecoration: "none",
+      },
+    },
+  },
 };
 
 const Code = {

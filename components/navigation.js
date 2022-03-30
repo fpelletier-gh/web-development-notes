@@ -2,15 +2,9 @@ import ActiveLink from "../components/ActiveLink";
 import { useState } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Button,
-  UnorderedList,
-  ListItem,
-  GridItem,
-} from "@chakra-ui/react";
+import { Box, Button, UnorderedList, ListItem } from "@chakra-ui/react";
 
-function CreateNavigationList({ menus }) {
+export default function Navigation({ menus }) {
   const [activeMenus, setActiveMenus] = useState([]);
 
   const handleSubmenuClick = (menuName) => {
@@ -128,13 +122,5 @@ function CreateNavigationList({ menus }) {
         );
       })}
     </UnorderedList>
-  );
-}
-
-export default function Navigation({ menus }) {
-  return (
-    <GridItem as="nav" colSpan={2} py={1} w="100%">
-      <CreateNavigationList menus={menus} />
-    </GridItem>
   );
 }

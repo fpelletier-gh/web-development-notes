@@ -18,6 +18,7 @@ function ActiveLink(props) {
     return (
       <NextLink href={href} passHref>
         <Link
+          variant="navigation"
           onClick={handleClick}
           color={router.asPath === href ? linkColor : null}
           {...props}

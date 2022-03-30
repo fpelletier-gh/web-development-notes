@@ -102,7 +102,7 @@ function Header({ menuData }) {
     <Flex as="header" boxShadow="base" px={2}>
       <Heading as="h1" fontSize={{ base: "md", md: "2xl" }} my={4} mx={2}>
         <NextLink href="/" passHref>
-          <Link>
+          <Link variant="logo">
             <LogoSpan>Web Dev</LogoSpan> Notes
           </Link>
         </NextLink>
