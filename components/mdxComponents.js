@@ -1,4 +1,5 @@
 import {
+  Divider,
   Heading,
   Code,
   Text,
@@ -84,4 +85,6 @@ export const components = {
   thead: Thead,
   tbody: Tbody,
   tfoot: Tfoot,
+  Code,
+  Divider,
 };
