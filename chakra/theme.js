@@ -35,6 +35,20 @@ const Button = {
   },
 };
 
+const Heading = {
+  baseStyle: (props) => ({
+    letterSpacing: "base",
+  }),
+  variants: {
+    blue: (props) => ({
+      color: mode("blue.600", "blue.300")(props),
+    }),
+  },
+  defaultProps: {
+    variant: "blue",
+  },
+};
+
 const Link = {
   baseStyle: (props) => ({
     letterSpacing: "widest",
@@ -56,6 +70,19 @@ const Link = {
   },
 };
 
+const Text = {
+  baseStyle: {
+    pb: "1.1rem",
+  },
+  variants: {
+    Blue: (props) => ({
+      _hover: {
+        color: mode("blue.600", "blue.300")(props),
+      },
+    }),
+  },
+};
+
 const Code = {
   baseStyle: {
     borderRadius: "sm",
@@ -68,17 +95,6 @@ const global = (props) => ({
     letterSpacing: "wider",
     lineHeight: "tall",
   },
-  p: {
-    pb: "1.1rem",
-  },
-  h2: {
-    fontSize: "4xl",
-    color: mode("blue.600", "blue.300")(props),
-    pb: "1rem",
-  },
-  h5: {
-    color: mode("blue.600", "blue.300")(props),
-  },
 });
 
 const theme = extendTheme({
@@ -87,6 +103,8 @@ const theme = extendTheme({
     Button,
     Link,
     Code,
+    Heading,
+    Text,
   },
   config,
   styles: {
