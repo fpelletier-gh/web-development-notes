@@ -14,6 +14,8 @@ export default function Home({ menuData }) {
         display="flex"
         flexDirection="column"
         alignItems="center"
+        justifyContent="center"
+        textAlign="center"
       >
         <Heading as="h2" size="xl" my={8}>
           Web Development Notes
@@ -22,7 +24,7 @@ export default function Home({ menuData }) {
           as="h4"
           size="md"
           variant="base"
-          w="60ch"
+          maxW="60ch"
           textAlign="center"
           mb={4}
         >

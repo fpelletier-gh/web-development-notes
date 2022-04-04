@@ -2,7 +2,7 @@ import Head from "next/head";
 import NextLink from "next/link";
 import Navigation from "./navigation";
 import ActiveLink from "./ActiveLink";
-import { useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
@@ -40,6 +40,7 @@ function MenuDrawer({ menuData }) {
         onClick={onOpen}
         p="2"
         variant="outline"
+        border="none"
       >
         <HamburgerIcon h="100%" w="100%" />
       </Button>
@@ -97,10 +98,54 @@ function LogoSpan(props) {
 }
 
 function Header({ menuData }) {
+  const bgColor = useColorModeValue("white", "gray.800");
   const { colorMode, toggleColorMode } = useColorMode();
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
   return (
-    <Flex as="header" boxShadow="base" px={2}>
-      <Heading as="h1" fontSize={{ base: "md", md: "2xl" }} my={4} mx={2}>
+    <Flex
+      display={show ? null : "none"}
+      as="header"
+      position="fixed"
+      top="0px"
+      bg={bgColor}
+      boxShadow="base"
+      px={2}
+      w="100%"
+      maxW="1200px"
+      h="4rem"
+      alignItems="center"
+      zIndex="100"
+    >
+      <Heading
+        as="h1"
+        variant="base"
+        fontSize={{ base: "xl", md: "2xl" }}
+        my={4}
+        mx={2}
+      >
         <NextLink href="/" passHref>
           <Link variant="logo">
             <LogoSpan>Web Dev</LogoSpan> Notes
@@ -141,7 +186,7 @@ function Header({ menuData }) {
 
 export default function Layout({ children, menuData }) {
   return (
-    <Container pt="0">
+    <Container pt="4rem">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
