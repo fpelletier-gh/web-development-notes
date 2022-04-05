@@ -86,7 +86,7 @@ const Text = {
 const Code = {
   baseStyle: {
     borderRadius: "sm",
-    "overflow-y": "auto",
+    overflowY: "auto",
   },
 };
 

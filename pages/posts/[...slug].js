@@ -41,7 +41,6 @@ export async function getStaticPaths() {
 
 export default function Post({ postData, menuData }) {
   const router = useRouter();
-  console.log(router.asPath);
   return (
     <Layout menuData={menuData} router={router}>
       <Head>
