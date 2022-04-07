@@ -17,10 +17,7 @@ export default function Layout({ children, menuData }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <Header menuData={menuData} />
-      <Grid
-        display={{ base: "none", md: "grid" }}
-        templateColumns="repeat(10, 1fr)"
-      >
+      <Grid display="grid" templateColumns="repeat(10, 1fr)">
         <GridItem
           as="nav"
           minH="90vh"
@@ -29,21 +26,29 @@ export default function Layout({ children, menuData }) {
           pr={6}
           py={4}
           w="100%"
+          display={{ base: "none", md: "block" }}
         >
           <Navigation menus={menuData} />
         </GridItem>
-        <GridItem as="main" colSpan={8} p={4} pt={6} pl={6}>
+        <GridItem
+          as="main"
+          display={{ base: "none", md: "block" }}
+          colSpan={8}
+          p={4}
+          pt={6}
+          pl={6}
+        >
           {children}
         </GridItem>
       </Grid>
-      <Container
+      <GridItem
         as="main"
         display={{ base: "block", md: "none" }}
         p={4}
         w="100%"
       >
         {children}
-      </Container>
+      </GridItem>
     </Container>
   );
 }

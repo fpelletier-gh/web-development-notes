@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
+  useDisclosure,
+  Slide,
   chakra,
   Button,
   useColorMode,
@@ -32,15 +34,15 @@ export function LogoSpan(props) {
 export default function Header({ menuData }) {
   const bgColor = useColorModeValue("white", "gray.800");
   const { colorMode, toggleColorMode } = useColorMode();
-  const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY > lastScrollY) {
-        setShow(false);
+        onClose();
       } else {
-        setShow(true);
+        onOpen();
       }
       setLastScrollY(window.scrollY);
     }
@@ -48,8 +50,10 @@ export default function Header({ menuData }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      if (window.scrollY === 0) {
+        onOpen();
+      }
       window.addEventListener("scroll", controlNavbar);
-
       return () => {
         window.removeEventListener("scroll", controlNavbar);
       };
@@ -57,61 +61,67 @@ export default function Header({ menuData }) {
   }, [lastScrollY]);
 
   return (
-    <Flex
-      display={show ? null : "none"}
-      as="header"
-      position="fixed"
-      top="0px"
-      bg={bgColor}
-      boxShadow="base"
-      px={2}
-      w="100%"
-      maxW="1200px"
-      h="4rem"
+    <Slide
+      direction="top"
       alignItems="center"
-      zIndex="100"
+      in={isOpen}
+      style={{ zIndex: 10 }}
+      w="100vh"
     >
-      <Heading
-        as="h1"
-        variant="base"
-        fontSize={{ base: "xl", md: "2xl" }}
-        my={4}
-        mx={2}
+      <Flex
+        as="header"
+        bg={bgColor}
+        boxShadow="base"
+        px={2}
+        w="100%"
+        maxW="1200px"
+        h="4rem"
+        alignItems="center"
+        m="auto"
+        zIndex="100"
       >
-        <NextLink href="/" passHref>
-          <Link variant="logo">
-            <LogoSpan>Web Dev</LogoSpan> Notes
-          </Link>
-        </NextLink>
-      </Heading>
-      <Spacer />
-      <ActiveLink
-        href="/about"
-        display={{ base: "none", md: "block" }}
-        m="4"
-        alignSelf="center"
-        fontWeight="bold"
-      >
-        About
-      </ActiveLink>
-      <ActiveLink
-        href="/contact"
-        display={{ base: "none", md: "block" }}
-        m="4"
-        alignSelf="center"
-        fontWeight="bold"
-      >
-        Contact
-      </ActiveLink>
-      <Button
-        onClick={toggleColorMode}
-        alignSelf="center"
-        bg="transparent"
-        _hover={{ background: "transparent" }}
-      >
-        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-      </Button>
-      <MenuDrawer menuData={menuData} />
-    </Flex>
+        <Heading
+          as="h1"
+          variant="base"
+          fontSize={{ base: "xl", md: "2xl" }}
+          my={4}
+          mx={2}
+        >
+          <NextLink href="/" passHref>
+            <Link variant="logo">
+              <LogoSpan>Web Dev</LogoSpan> Notes
+            </Link>
+          </NextLink>
+        </Heading>
+        <Spacer />
+        <ActiveLink
+          href="/about"
+          display={{ base: "none", md: "block" }}
+          m="4"
+          alignSelf="center"
+          fontWeight="bold"
+        >
+          About
+        </ActiveLink>
+        <ActiveLink
+          href="/contact"
+          display={{ base: "none", md: "block" }}
+          m="4"
+          alignSelf="center"
+          fontWeight="bold"
+        >
+          Contact
+        </ActiveLink>
+        <Button
+          onClick={toggleColorMode}
+          alignSelf="center"
+          bg="transparent"
+          _hover={{ background: "transparent" }}
+        >
+          {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+        </Button>
+        <MenuDrawer menuData={menuData} />
+      </Flex>
+    </Slide>
   );
 }
