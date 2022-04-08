@@ -61,14 +61,11 @@ export default function Header({ menuData }) {
   }, [lastScrollY]);
 
   return (
-    <Slide
-      direction="top"
-      alignItems="center"
-      in={isOpen}
-      style={{ zIndex: 10 }}
-      w="100vh"
-    >
+    <>
       <Flex
+        position="fixed"
+        top="0px"
+        display={lastScrollY !== 0 ? "none" : null}
         as="header"
         bg={bgColor}
         boxShadow="base"
@@ -122,6 +119,68 @@ export default function Header({ menuData }) {
         </Button>
         <MenuDrawer menuData={menuData} />
       </Flex>
-    </Slide>
+      <Slide
+        direction="top"
+        alignItems="center"
+        in={isOpen}
+        style={{ zIndex: 10 }}
+        w="100vh"
+      >
+        <Flex
+          as="header"
+          bg={bgColor}
+          boxShadow="base"
+          px={2}
+          w="100%"
+          maxW="1200px"
+          h="4rem"
+          alignItems="center"
+          m="auto"
+          zIndex="100"
+        >
+          <Heading
+            as="h1"
+            variant="base"
+            fontSize={{ base: "xl", md: "2xl" }}
+            my={4}
+            mx={2}
+          >
+            <NextLink href="/" passHref>
+              <Link variant="logo">
+                <LogoSpan>Web Dev</LogoSpan> Notes
+              </Link>
+            </NextLink>
+          </Heading>
+          <Spacer />
+          <ActiveLink
+            href="/about"
+            display={{ base: "none", md: "block" }}
+            m="4"
+            alignSelf="center"
+            fontWeight="bold"
+          >
+            About
+          </ActiveLink>
+          <ActiveLink
+            href="/contact"
+            display={{ base: "none", md: "block" }}
+            m="4"
+            alignSelf="center"
+            fontWeight="bold"
+          >
+            Contact
+          </ActiveLink>
+          <Button
+            onClick={toggleColorMode}
+            alignSelf="center"
+            bg="transparent"
+            _hover={{ background: "transparent" }}
+          >
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
+          <MenuDrawer menuData={menuData} />
+        </Flex>
+      </Slide>
+    </>
   );
 }

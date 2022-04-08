@@ -54,7 +54,7 @@ export default function MenuDrawer({ menuData }) {
 
           <DrawerBody>
             <Container overflowY="auto">
-              <Navigation menus={menuData} />
+              <Navigation menus={menuData} onClose={onClose} />
             </Container>
           </DrawerBody>
 
