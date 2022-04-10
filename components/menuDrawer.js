@@ -1,6 +1,6 @@
 import Navigation from "./navigation";
 import { LogoSpan } from "./header";
-import ActiveLink from "./ActiveLink";
+import ActiveLink from "./activeLink";
 import { useRef } from "react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {

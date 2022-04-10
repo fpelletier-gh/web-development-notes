@@ -13,7 +13,7 @@ import {
   TableCaption,
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
-import ActiveLink from "./ActiveLink";
+import ActiveLink from "./activeLink";
 
 const lightModeHeadingColor = "blue.600";
 const darkModeHeadingColor = "blue.300";

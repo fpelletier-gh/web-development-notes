@@ -1,4 +1,4 @@
-import ActiveLink from "../components/ActiveLink";
+import ActiveLink from "./activeLink";
 import { useState } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
@@ -30,7 +30,7 @@ export default function Navigation({ menus, onClose }) {
       <ListItem>
         {!hasSubMenu && (
           <Box
-            display="block"
+            display="flex"
             borderLeft="2px solid"
             borderColor={blue}
             w="100%"
@@ -42,6 +42,7 @@ export default function Navigation({ menus, onClose }) {
               onClick={onClose}
               w={"100%"}
               pl="2"
+              fontSize={["2xl", "md"]}
             >
               {data.title}
             </ActiveLink>
@@ -51,7 +52,7 @@ export default function Navigation({ menus, onClose }) {
           <Box display="block" w="100%" py="0.3rem" dept={dept}>
             <Button
               colorScheme="gray.800"
-              size="lg"
+              fontSize={["3xl", "xl"]}
               w="100%"
               justifyContent="left"
               variant="link"
