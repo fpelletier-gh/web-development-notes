@@ -1,7 +1,6 @@
 import Layout from "../../components/layout";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -41,7 +40,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export default function Post({ postData, menuData }) {
-  const router = useRouter();
   return (
     <Layout menuData={menuData}>
       <Head>
