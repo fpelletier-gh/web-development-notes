@@ -1,22 +1,13 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
 
 const postsMainDirectory = path.join(process.cwd(), "posts/");
 
-export function getAllFileNames() {
-  const allFileWithPath = getAllFilesWithPath(postsMainDirectory);
-  const fileNames = allFileWithPath.map((fileName) =>
-    fileName.substring(fileName.lastIndexOf("/") + 1).replace(/\.mdx$/, "")
-  );
-
-  return fileNames;
-}
-
-export const getAllFilesWithPath = function (dirPath, arrayOfFiles) {
+export const getAllFilesWithPath = function (
+  dirPath: string,
+  arrayOfFiles = []
+) {
   const files = fs.readdirSync(dirPath);
-
-  arrayOfFiles = arrayOfFiles || [];
 
   files.forEach(function (file) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
@@ -38,33 +29,6 @@ export function getAllSlugs() {
   return fileNamesWithSubPath;
 }
 
-export function getSortedPostsData() {
-  const allSlugs = getAllSlugs();
-  const allPostsData = allSlugs.map((slug) => {
-    const id = getIdFromSlug(slug);
-    const fullPath = postsMainDirectory + slug;
-    const fileContents = fs.readFileSync(fullPath + ".mdx", "utf8");
-    const matterResult = matter(fileContents);
-    return {
-      id,
-      slug,
-      ...matterResult.data,
-    };
-  });
-
-  return allPostsData.sort((post1, post2) =>
-    post1.title > post2.title ? 1 : -1
-  );
-}
-
-export function getIdFromSlug(slug) {
-  const postId =
-    typeof slug === "array"
-      ? slug.join("-").replace("/", "-")
-      : slug.replace("/", "-");
-  return postId;
-}
-
 export function getAllPostSlugArray() {
   const slugs = getAllSlugs();
   return slugs.map((slug) => {
@@ -77,8 +41,8 @@ export function getAllPostSlugArray() {
   });
 }
 
-export async function getPostData(slug) {
-  const id = getIdFromSlug(slug);
+export async function getPostData(slug: string) {
+  const id = slug.replace("/", "-");
   const fullPath = postsMainDirectory + slug;
   const fileContents = fs.readFileSync(fullPath + ".mdx", "utf8");
   return {
@@ -90,31 +54,41 @@ export async function getPostData(slug) {
 export function getMenuData() {
   const slugs = getAllSlugs();
 
-  function prettifyNavigationTitle(str) {
-    return str
+  function prettifyNavigationTitle(title: string) {
+    return title
       .split("-")
-      .map(function capitalize(part) {
-        return part.charAt(0).toUpperCase() + part.slice(1);
+      .map(function capitalize(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
       })
       .join(" ");
   }
 
-  function createNestedArray(slugs) {
+  function createNestedArray(slugs: any[]) {
     const nestedArray = [];
     slugs.reduce(
       (r, string) => {
-        string.split(/(?=\/)/).reduce((total, _, index, slugs) => {
-          total.submenu = total.submenu || [];
-          var url = slugs.slice(0, index + 1).join(""),
-            temp = total.submenu.find((object) => object.url === url);
-          if (!temp) {
-            let title = prettifyNavigationTitle(
-              url.replace(/^.*\/(.*)$/, "$1")
-            );
-            total.submenu.push((temp = { title, url }));
-          }
-          return temp;
-        }, r);
+        string
+          .split(/(?=\/)/)
+          .reduce(
+            (
+              total: { submenu: { title: string; url: any }[] },
+              _: any,
+              index: number,
+              slugs: any[]
+            ) => {
+              total.submenu = total.submenu || [];
+              var url = slugs.slice(0, index + 1).join(""),
+                temp = total.submenu.find((object) => object.url === url);
+              if (!temp) {
+                let title = prettifyNavigationTitle(
+                  url.replace(/^.*\/(.*)$/, "$1")
+                );
+                total.submenu.push((temp = { title, url }));
+              }
+              return temp;
+            },
+            r
+          );
         return r;
       },
       { submenu: nestedArray }

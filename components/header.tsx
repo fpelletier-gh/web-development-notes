@@ -1,8 +1,12 @@
 import NextLink from "next/link";
 import ActiveLink from "./activeLink";
 import MenuDrawer from "./menuDrawer";
-import { useState, useEffect } from "react";
-import { useColorModeValue } from "@chakra-ui/react";
+import { useState, useEffect, DetailedHTMLProps, HTMLAttributes } from "react";
+import {
+  ChakraProps,
+  OmitCommonProps,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   useDisclosure,
@@ -16,7 +20,14 @@ import {
   Link,
 } from "@chakra-ui/react";
 
-export function LogoSpan(props) {
+export function LogoSpan(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
+      keyof ChakraProps
+    > &
+    ChakraProps & { as?: "span" }
+) {
   const color = useColorModeValue("blue.600", "blue.300");
   return (
     <chakra.span
@@ -50,9 +61,6 @@ export default function Header({ menuData }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (window.scrollY === 0) {
-        onOpen();
-      }
       window.addEventListener("scroll", controlNavbar);
       return () => {
         window.removeEventListener("scroll", controlNavbar);
@@ -65,7 +73,7 @@ export default function Header({ menuData }) {
       <Flex
         position="fixed"
         top="0px"
-        display={lastScrollY !== 0 ? "none" : null}
+        display={lastScrollY > 65 ? "none" : null}
         as="header"
         bg={bgColor}
         boxShadow="base"

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { GetStaticProps } from "next";
 import Layout, { siteTitle } from "../components/layout";
 import { getMenuData } from "../lib/posts";
 import { Heading } from "@chakra-ui/react";
@@ -17,11 +18,11 @@ export default function About({ menuData }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const menuData = getMenuData();
   return {
     props: {
       menuData,
     },
   };
-}
+};

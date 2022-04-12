@@ -11,14 +11,26 @@ import {
   Th,
   Td,
   TableCaption,
+  HeadingProps,
+  OmitCommonProps,
+  TextProps,
+  CodeProps,
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import ActiveLink from "./activeLink";
 
 const lightModeHeadingColor = "blue.600";
 const darkModeHeadingColor = "blue.300";
 
-function MdxHeadingXXLarge(props) {
+function MdxHeadingXXLarge(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>,
+      keyof HeadingProps
+    > &
+    HeadingProps & { as?: "h2" }
+) {
   const headingColor = useColorModeValue(
     lightModeHeadingColor,
     darkModeHeadingColor
@@ -26,7 +38,14 @@ function MdxHeadingXXLarge(props) {
   return <Heading color={headingColor} size="2xl" as="h1" {...props} />;
 }
 
-function MdxHeadingXLarge(props) {
+function MdxHeadingXLarge(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>,
+      keyof HeadingProps
+    > &
+    HeadingProps & { as?: "h2" }
+) {
   const headingColor = useColorModeValue(
     lightModeHeadingColor,
     darkModeHeadingColor
@@ -34,7 +53,14 @@ function MdxHeadingXLarge(props) {
   return <Heading color={headingColor} size="xl" as="h2" {...props} />;
 }
 
-function MdxHeadingLarge(props) {
+function MdxHeadingLarge(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>,
+      keyof HeadingProps
+    > &
+    HeadingProps & { as?: "h2" }
+) {
   const headingColor = useColorModeValue(
     lightModeHeadingColor,
     darkModeHeadingColor
@@ -42,7 +68,14 @@ function MdxHeadingLarge(props) {
   return <Heading color={headingColor} size="lg" as="h3" {...props} />;
 }
 
-function MdxHeadingMedium(props) {
+function MdxHeadingMedium(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>,
+      keyof HeadingProps
+    > &
+    HeadingProps & { as?: "h2" }
+) {
   const headingColor = useColorModeValue(
     lightModeHeadingColor,
     darkModeHeadingColor
@@ -50,7 +83,14 @@ function MdxHeadingMedium(props) {
   return <Heading color={headingColor} size="md" as="h4" {...props} />;
 }
 
-function MdxHeadingSmall(props) {
+function MdxHeadingSmall(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>,
+      keyof HeadingProps
+    > &
+    HeadingProps & { as?: "h2" }
+) {
   const headingColor = useColorModeValue(
     lightModeHeadingColor,
     darkModeHeadingColor
@@ -60,11 +100,28 @@ function MdxHeadingSmall(props) {
   );
 }
 
-function MdxText(props) {
+function MdxText(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<
+        HTMLAttributes<HTMLParagraphElement>,
+        HTMLParagraphElement
+      >,
+      keyof TextProps
+    > &
+    TextProps & { as?: "p" }
+) {
   return <Text {...props} />;
 }
 
-function MdxCode(props) {
+function MdxCode(
+  props: JSX.IntrinsicAttributes &
+    OmitCommonProps<
+      DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>,
+      keyof CodeProps
+    > &
+    CodeProps & { as?: "code" }
+) {
   return <Code {...props} />;
 }
 

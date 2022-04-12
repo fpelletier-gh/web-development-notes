@@ -3,13 +3,13 @@ import NextLink from "next/link";
 import { Link } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 
-function ActiveLink(props) {
+function ActiveLink(props: any) {
   const router = useRouter();
   const href = props.href;
   const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
   const linkColor = useColorModeValue("blue.600", "blue.300");
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     router.push(href);
   };

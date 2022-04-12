@@ -4,10 +4,10 @@ import { useColorModeValue } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Box, Button, UnorderedList, ListItem } from "@chakra-ui/react";
 
-export default function Navigation({ menus, onClose }) {
+export default function Navigation({ menus, onClose = () => {} }) {
   const [activeMenus, setActiveMenus] = useState([]);
 
-  const handleSubmenuClick = (menuName) => {
+  const handleSubmenuClick = (menuName: string[]) => {
     let newActiveMenus = [...activeMenus];
 
     if (newActiveMenus.includes(menuName)) {
@@ -88,7 +88,7 @@ export default function Navigation({ menus, onClose }) {
         flexDir="column"
         listStyleType="none"
       >
-        {data.map((menu, index) => {
+        {data.map((menu: { submenu: any }, index: number) => {
           const menuName = `sidebar-submenu-${dept}-${menuIndex}-${index}`;
 
           return (
@@ -108,7 +108,7 @@ export default function Navigation({ menus, onClose }) {
 
   return (
     <UnorderedList display="flex" flexDir="column" listStyleType="none">
-      {menus.map((menu, index) => {
+      {menus.map((menu: { submenu: any }, index: number) => {
         const dept = 1;
         const menuName = `sidebar-menu-${dept}-${index}`;
 

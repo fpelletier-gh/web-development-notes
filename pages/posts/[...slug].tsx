@@ -1,4 +1,5 @@
 import Layout from "../../components/layout";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import remarkGfm from "remark-gfm";
@@ -11,7 +12,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { components } from "../../components/mdxComponents";
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params.slug.join("/");
   const menuData = getMenuData();
   const postData = await getPostData(slug);
@@ -29,20 +30,20 @@ export async function getStaticProps({ params }) {
       menuData,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostSlugArray();
   return {
     paths,
     fallback: false,
   };
-}
+};
 
 export default function Post({ postData, menuData }) {
   const router = useRouter();
   return (
-    <Layout menuData={menuData} router={router}>
+    <Layout menuData={menuData}>
       <Head>
         <title>{postData.frontmatter.title}</title>
       </Head>
