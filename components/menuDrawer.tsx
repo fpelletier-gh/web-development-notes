@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Button,
+  UnorderedList,
+  ListItem,
   Container,
   Flex,
   Spacer,
@@ -36,7 +38,8 @@ export default function MenuDrawer({ menuData }) {
       </Button>
       <Drawer
         isOpen={isOpen}
-        placement="right"
+        placement="top"
+        size="full"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
@@ -55,17 +58,33 @@ export default function MenuDrawer({ menuData }) {
           <DrawerBody>
             <Container overflowY="auto">
               <Navigation menus={menuData} onClose={onClose} />
+              <UnorderedList listStyleType="none">
+                <ListItem>
+                  <ActiveLink
+                    href="/about"
+                    fontWeight="semibold"
+                    fontSize={["xl", "md"]}
+                  >
+                    About
+                  </ActiveLink>
+                </ListItem>
+                <ListItem>
+                  <ActiveLink
+                    href="/contact"
+                    fontWeight="semibold"
+                    fontSize={["xl", "md"]}
+                  >
+                    Contact
+                  </ActiveLink>
+                </ListItem>
+              </UnorderedList>
             </Container>
           </DrawerBody>
 
-          <DrawerFooter display="flex" justifyContent="space-evenly">
-            <ActiveLink href="/about" m="4" fontWeight="bold">
-              About
-            </ActiveLink>
-            <ActiveLink href="/contact" m="4" fontWeight="bold">
-              Contact
-            </ActiveLink>
-          </DrawerFooter>
+          <DrawerFooter
+            display="flex"
+            justifyContent="space-evenly"
+          ></DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>

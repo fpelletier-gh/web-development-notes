@@ -127,13 +127,7 @@ export default function Header({ menuData }) {
         </Button>
         <MenuDrawer menuData={menuData} />
       </Flex>
-      <Slide
-        direction="top"
-        alignItems="center"
-        in={isOpen}
-        style={{ zIndex: 10 }}
-        w="100vh"
-      >
+      <Slide direction="top" in={isOpen} style={{ zIndex: 10 }}>
         <Flex
           as="header"
           bg={bgColor}

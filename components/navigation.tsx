@@ -29,42 +29,43 @@ export default function Navigation({ menus, onClose = () => {} }) {
     return (
       <ListItem>
         {!hasSubMenu && (
-          <Box
-            display="flex"
-            borderLeft="2px solid"
-            borderColor={blue}
-            w="100%"
-            dept={dept}
-          >
+          <Box display="flex" w="100%">
             <ActiveLink
               href={`/posts/${data.url}`}
               fontWeight="semibold"
               onClick={onClose}
               w={"100%"}
-              pl="2"
-              fontSize={["2xl", "md"]}
+              fontSize={["xl", "md"]}
             >
               {data.title}
             </ActiveLink>
           </Box>
         )}{" "}
         {hasSubMenu && (
-          <Box display="block" w="100%" py="0.3rem" dept={dept}>
+          <Box display="flex" alignItems="center" w="100%" py="0.3rem">
             <Button
+              display="block"
               colorScheme="gray.800"
-              fontSize={["3xl", "xl"]}
+              fontSize={["xl", "md"]}
               w="100%"
-              justifyContent="left"
+              whiteSpace="normal"
+              textAlign="left"
               variant="link"
               onClick={() => handleSubmenuClick(menuName)}
             >
               {data.title}
-              {isActive ? (
-                <ChevronUpIcon ml="0.2rem" />
-              ) : (
-                <ChevronDownIcon ml="0.2rem" />
-              )}
             </Button>
+            {isActive ? (
+              <ChevronUpIcon
+                ml="0.2rem"
+                onClick={() => handleSubmenuClick(menuName)}
+              />
+            ) : (
+              <ChevronDownIcon
+                ml="0.2rem"
+                onClick={() => handleSubmenuClick(menuName)}
+              />
+            )}
           </Box>
         )}
         {hasSubMenu && (

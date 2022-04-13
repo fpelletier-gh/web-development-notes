@@ -12,6 +12,7 @@ import { MDXRemote } from "next-mdx-remote";
 import { components } from "../../components/mdxComponents";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  // @ts-ignore
   const slug = params.slug.join("/");
   const menuData = getMenuData();
   const postData = await getPostData(slug);
