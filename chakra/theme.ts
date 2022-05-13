@@ -32,12 +32,23 @@ const Button = {
         color: mode("blue.600", "blue.300")(props),
       },
     }),
+    submit: (props) => ({
+      fontSize: "xl",
+      fontWeight: "semibold",
+      border: "1px solid",
+      borderColor: mode("blue.600", "blue.300")(props),
+      color: mode("blue.600", "blue.300")(props),
+      _hover: {
+        backgroundColor: mode("gray.200", "gray.700")(props),
+      },
+    }),
   },
 };
 
 const Heading = {
   baseStyle: (props) => ({
     letterSpacing: "base",
+    fontFamily: "'Roboto flex', sans-serif",
   }),
   variants: {
     blue: (props) => ({
@@ -94,6 +105,7 @@ const global = (props) => ({
   "html, body": {
     letterSpacing: "wider",
     lineHeight: "tall",
+    fontFamily: "'Roboto flex', sans-serif",
   },
 });
 
