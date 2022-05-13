@@ -46,7 +46,7 @@ export default function Navigation({ menus, onClose = () => {} }) {
             <Button
               display="block"
               colorScheme="gray.800"
-              fontSize={["xl", "md"]}
+              fontSize={["2xl", "xl"]}
               w="100%"
               whiteSpace="normal"
               textAlign="left"
