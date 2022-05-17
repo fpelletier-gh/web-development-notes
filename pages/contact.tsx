@@ -1,9 +1,13 @@
 import Head from "next/head";
-import useSWR from "swr";
 import { GetStaticProps } from "next";
+import { useState } from "react";
 import Layout, { siteTitle } from "../components/layout";
 import { getMenuData } from "../lib/posts";
 import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
   Flex,
   Box,
   VStack,
@@ -16,10 +20,10 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
 
-// @ts-ignore
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 export default function Contact({ menuData }) {
+  const [isMessageSent, setMessageSent] = useState(false);
+  const [isMessageError, setMessageError] = useState(false);
+
   function validateName(value: any) {
     let error: string;
 
@@ -42,16 +46,6 @@ export default function Contact({ menuData }) {
     return error;
   }
 
-  function validateSubject(value: any) {
-    let error: string;
-
-    if (!value) {
-      error = "Required";
-    }
-
-    return error;
-  }
-
   function validateMessage(value: any) {
     let error: string;
 
@@ -62,6 +56,27 @@ export default function Contact({ menuData }) {
     return error;
   }
 
+  function handleSubmit(values, actions) {
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    }).then((res) => {
+      actions.setSubmitting(false);
+      actions.resetForm({ values: "" });
+      if (res.status === 200) {
+        setMessageSent(true);
+      } else {
+        setMessageError(true);
+        console.log(res.status);
+        console.log(JSON.stringify(values));
+      }
+    });
+  }
+
   return (
     <Layout menuData={menuData}>
       <Head>
@@ -69,6 +84,32 @@ export default function Contact({ menuData }) {
       </Head>
 
       <Flex as="main" direction="column" alignItems={"stretch"} w="100%">
+        <Alert
+          status="success"
+          display={isMessageSent ? "flex" : "none"}
+          textAlign="center"
+          flexDirection={["column", "row"]}
+          alignItems={["center", "left"]}
+          justifyContent={["center"]}
+        >
+          <AlertIcon />
+          <AlertTitle my={[1, 0]}>Message sent!</AlertTitle>
+          <AlertDescription>
+            Thanks for sending me a message. I'll get back to you soon.
+          </AlertDescription>
+        </Alert>
+        <Alert
+          status="error"
+          display={isMessageError ? "flex" : "none"}
+          textAlign="center"
+          flexDirection={["column", "row"]}
+          alignItems={["center", "left"]}
+          justifyContent={["center"]}
+        >
+          <AlertIcon />
+          <AlertTitle my={[1, 0]}>Someting went wrong!</AlertTitle>
+          <AlertDescription>Please try again</AlertDescription>
+        </Alert>
         <Heading as="h2" size="xl" my={6} textAlign="center">
           Contact me
         </Heading>
@@ -82,13 +123,8 @@ export default function Contact({ menuData }) {
           Have a question or want to work together?
         </Heading>
         <Formik
-          initialValues={{ name: "", email: "", subject: "", message: "" }}
-          onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
+          initialValues={{ name: "", email: "", message: "" }}
+          onSubmit={handleSubmit}
         >
           {(props) => (
             <Form>
@@ -97,7 +133,6 @@ export default function Contact({ menuData }) {
                   {({ field, form }) => (
                     <FormControl
                       isInvalid={form.errors.name && form.touched.name}
-                      // w={[null, "35rem", "35rem", "40rem"]}
                     >
                       <Input {...field} id="name" w="100%" placeholder="Name" />
                       <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -111,16 +146,6 @@ export default function Contact({ menuData }) {
                     >
                       <Input {...field} id="email" placeholder="Email" />
                       <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-                    </FormControl>
-                  )}
-                </Field>
-                <Field name="subject" validate={validateSubject}>
-                  {({ field, form }) => (
-                    <FormControl
-                      isInvalid={form.errors.subject && form.touched.subject}
-                    >
-                      <Input {...field} id="subject" placeholder="Subject" />
-                      <FormErrorMessage>{form.errors.subject}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
