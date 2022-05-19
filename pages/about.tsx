@@ -12,7 +12,7 @@ export default function About({ menuData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <Stack direction={["column", "row"]} spacing={10} pt={[10, 10]}>
+      <Stack direction={["column", "column", "row"]} spacing={10} pt={[10, 10]}>
         <Flex
           justifyContent="center"
           minW={200}
@@ -31,10 +31,15 @@ export default function About({ menuData }) {
           />
         </Flex>
         <Flex flexDir="column">
-          <Heading as="h2" textAlign={["center", "left"]} size="xl" mb={[4, 5]}>
+          <Heading
+            as="h2"
+            textAlign={["center", "center", "left"]}
+            size="xl"
+            mb={[4, 5]}
+          >
             About Me
           </Heading>
-          <Text textAlign={["center", "left"]}>
+          <Text textAlign={["center", "center", "left"]}>
             I'm Francis Pelletier, I'm pationate about everything related to web
             development, javascript, react, linux and vim.
           </Text>

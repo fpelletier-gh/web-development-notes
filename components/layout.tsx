@@ -22,6 +22,7 @@ export default function Layout({ children, menuData }) {
         <GridItem
           as="nav"
           minH="90vh"
+          minW="220px"
           boxShadow="5px 3px 9px -10px"
           colSpan={2}
           pr={6}
