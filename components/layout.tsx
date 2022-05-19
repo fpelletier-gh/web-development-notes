@@ -2,11 +2,12 @@ import Head from "next/head";
 import Footer from "./footer";
 import Navigation from "./navigation";
 import Header from "./header";
-import { Grid, Container, GridItem } from "@chakra-ui/react";
+import { Grid, Container, GridItem, useColorModeValue } from "@chakra-ui/react";
 
 export const siteTitle = "Web Development Notes";
 
 export default function Layout({ children, menuData }) {
+  const borderColor = useColorModeValue("gray.200", "gray.600");
   return (
     <Container pt="4rem">
       <Head>
@@ -23,7 +24,9 @@ export default function Layout({ children, menuData }) {
           as="nav"
           minH="90vh"
           minW="220px"
-          boxShadow="5px 3px 9px -10px"
+          boxShadow="5px -2px 9px -11px black"
+          // borderRight="1px solid"
+          // borderColor={borderColor}
           colSpan={2}
           pr={6}
           py={4}

@@ -76,7 +76,7 @@ export default function Header({ menuData }) {
         display={lastScrollY > 65 ? "none" : null}
         as="header"
         bg={bgColor}
-        boxShadow="base"
+        boxShadow="0px 5px 9px -11px black"
         px={2}
         w="100%"
         maxW="1200px"
@@ -131,7 +131,7 @@ export default function Header({ menuData }) {
         <Flex
           as="header"
           bg={bgColor}
-          boxShadow="base"
+          boxShadow="0px 5px 9px -11px black"
           px={2}
           w="100%"
           maxW="1200px"

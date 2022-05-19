@@ -8,7 +8,7 @@ import {
 } from "react-icons/bs";
 
 export default function Footer() {
-  const borderColor = useColorModeValue("gray.200", "gray.600");
+  const borderColor = useColorModeValue("gray.200", "gray.700");
   return (
     <HStack
       as="footer"
