@@ -107,6 +107,15 @@ const global = (props) => ({
     lineHeight: "tall",
     fontFamily: "'Roboto flex', sans-serif",
   },
+  a: {
+    letterSpacing: "widest",
+    textDecoration: "none",
+    _hover: {
+      textDecoration: "none",
+      borderColor: mode("blue.600", "blue.300")(props),
+      color: mode("blue.600", "blue.300")(props),
+    },
+  },
 });
 
 const theme = extendTheme({

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Footer from "./footer";
 import Navigation from "./navigation";
 import Header from "./header";
 import { Grid, Container, GridItem } from "@chakra-ui/react";
@@ -32,22 +33,29 @@ export default function Layout({ children, menuData }) {
         </GridItem>
         <GridItem
           as="main"
-          display={{ base: "none", md: "block" }}
+          display={{ base: "none", md: "flex" }}
+          flexDir="column"
+          justifyContent="space-between"
           colSpan={8}
           p={4}
           pt={6}
           pl={6}
         >
           {children}
+          <Footer />
         </GridItem>
       </Grid>
       <GridItem
         as="main"
-        display={{ base: "block", md: "none" }}
+        minH="90vh"
+        display={{ base: "flex", md: "none" }}
+        flexDir="column"
+        justifyContent="space-between"
         p={4}
         w="100%"
       >
         {children}
+        <Footer />
       </GridItem>
     </Container>
   );
