@@ -1,4 +1,10 @@
-import { useColorModeValue, Box, HStack, Icon } from "@chakra-ui/react";
+import {
+  useColorModeValue,
+  Box,
+  HStack,
+  Icon,
+  Tooltip,
+} from "@chakra-ui/react";
 import ActiveLink from "./activeLink";
 import {
   BsGithub,
@@ -20,18 +26,34 @@ export default function Footer() {
       alignItems="center"
       justifyContent="center"
     >
-      <ActiveLink href="/contact">
-        <Icon as={BsEnvelope} />
-      </ActiveLink>
-      <ActiveLink href="https://github.com/fpelletier-gh">
-        <Icon as={BsGithub} />
-      </ActiveLink>
-      <ActiveLink href="https://francispelletier.netlify.app">
-        <Icon as={BsPersonCircle} />
-      </ActiveLink>
-      <ActiveLink href="https://github.com/fpelletier-gh/web-development-notes">
-        <Icon as={BsCodeSlash} />
-      </ActiveLink>
+      <Tooltip hasArrow label="Contact me" placement="top">
+        <Box>
+          <ActiveLink href="/contact">
+            <Icon as={BsEnvelope} w={5} h={5} />
+          </ActiveLink>
+        </Box>
+      </Tooltip>
+      <Tooltip label="Github Profile" placement="top">
+        <Box>
+          <ActiveLink href="https://github.com/fpelletier-gh">
+            <Icon as={BsGithub} w={5} h={5} />
+          </ActiveLink>
+        </Box>
+      </Tooltip>
+      <Tooltip label="Portfolio" placement="top">
+        <Box>
+          <ActiveLink href="https://francispelletier.netlify.app">
+            <Icon as={BsPersonCircle} w={5} h={5} />
+          </ActiveLink>
+        </Box>
+      </Tooltip>
+      <Tooltip label="This Project Repository" placement="top">
+        <Box>
+          <ActiveLink href="https://github.com/fpelletier-gh/web-development-notes">
+            <Icon as={BsCodeSlash} w={5} h={5} />
+          </ActiveLink>
+        </Box>
+      </Tooltip>
     </HStack>
   );
 }
