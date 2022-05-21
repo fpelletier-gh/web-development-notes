@@ -1,46 +1,17 @@
-import NextLink from "next/link";
+import Logo from "./logo";
 import ActiveLink from "./activeLink";
 import MenuDrawer from "./menuDrawer";
-import { useState, useEffect, DetailedHTMLProps, HTMLAttributes } from "react";
-import {
-  ChakraProps,
-  OmitCommonProps,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   useDisclosure,
   Slide,
-  chakra,
   Button,
   useColorMode,
-  Heading,
   Flex,
   Spacer,
-  Link,
 } from "@chakra-ui/react";
-
-export function LogoSpan(
-  props: JSX.IntrinsicAttributes &
-    OmitCommonProps<
-      DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
-      keyof ChakraProps
-    > &
-    ChakraProps & { as?: "span" }
-) {
-  const color = useColorModeValue("blue.600", "blue.300");
-  return (
-    <chakra.span
-      as="span"
-      color={color}
-      borderColor={color}
-      borderWidth="2px"
-      borderRadius="md"
-      px="0.3rem"
-      {...props}
-    />
-  );
-}
 
 export default function Header({ menuData }) {
   const bgColor = useColorModeValue("white", "gray.800");
@@ -85,19 +56,7 @@ export default function Header({ menuData }) {
         m="auto"
         zIndex="100"
       >
-        <Heading
-          as="h1"
-          variant="base"
-          fontSize={{ base: "xl", md: "2xl" }}
-          my={4}
-          mx={2}
-        >
-          <NextLink href="/" passHref>
-            <Link variant="logo">
-              <LogoSpan>Web Dev</LogoSpan> Notes
-            </Link>
-          </NextLink>
-        </Heading>
+        <Logo />
         <Spacer />
         <ActiveLink
           href="/about"
@@ -140,19 +99,7 @@ export default function Header({ menuData }) {
           m="auto"
           zIndex="100"
         >
-          <Heading
-            as="h1"
-            variant="base"
-            fontSize={{ base: "xl", md: "2xl" }}
-            my={4}
-            mx={2}
-          >
-            <NextLink href="/" passHref>
-              <Link variant="logo">
-                <LogoSpan>Web Dev</LogoSpan> Notes
-              </Link>
-            </NextLink>
-          </Heading>
+          <Logo />
           <Spacer />
           <ActiveLink
             href="/about"

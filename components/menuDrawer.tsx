@@ -1,5 +1,5 @@
 import Navigation from "./navigation";
-import { LogoSpan } from "./header";
+import Logo, { LogoSpan } from "./logo";
 import ActiveLink from "./activeLink";
 import { useRef } from "react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -18,6 +18,7 @@ import {
   DrawerContent,
   useDisclosure,
 } from "@chakra-ui/react";
+import Footer from "./footer";
 
 export default function MenuDrawer({ menuData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,7 +48,7 @@ export default function MenuDrawer({ menuData }) {
         <DrawerContent>
           <DrawerHeader>
             <Flex alignItems="center">
-              <LogoSpan border="none">Web Dev</LogoSpan> Notes
+              <Logo />
               <Spacer />
               <Button bg="transparent" onClick={onClose}>
                 <CloseIcon w={4} h={4} />
@@ -81,10 +82,9 @@ export default function MenuDrawer({ menuData }) {
             </Container>
           </DrawerBody>
 
-          <DrawerFooter
-            display="flex"
-            justifyContent="space-evenly"
-          ></DrawerFooter>
+          <DrawerFooter display="flex" justifyContent="center">
+            <Footer />
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
