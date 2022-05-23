@@ -1,4 +1,6 @@
 import {
+  UnorderedList,
+  ListItem,
   Divider,
   Heading,
   Code,
@@ -65,7 +67,7 @@ function MdxHeadingLarge(
     lightModeHeadingColor,
     darkModeHeadingColor
   );
-  return <Heading color={headingColor} size="lg" as="h3" {...props} />;
+  return <Heading color={headingColor} size="lg" as="h3" pb={4} {...props} />;
 }
 
 function MdxHeadingMedium(
@@ -125,8 +127,18 @@ function MdxCode(
   return <Code {...props} />;
 }
 
+function MdxListItem(props) {
+  return <ListItem {...props} />;
+}
+
+function MdxUnorderedList(props) {
+  return <UnorderedList {...props} />;
+}
+
 export const components = {
   a: ActiveLink,
+  ul: MdxUnorderedList,
+  li: MdxListItem,
   h1: MdxHeadingXXLarge,
   h2: MdxHeadingXLarge,
   h3: MdxHeadingLarge,
