@@ -1,8 +1,9 @@
 import ActiveLink from "./activeLink";
+import { BsDot } from "react-icons/bs";
 import { useState } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { Box, Button, UnorderedList, ListItem } from "@chakra-ui/react";
+import { Box, Button, UnorderedList, ListItem, Icon } from "@chakra-ui/react";
 
 export default function Navigation({ menus, onClose = () => {} }) {
   const [activeMenus, setActiveMenus] = useState([]);
@@ -29,7 +30,8 @@ export default function Navigation({ menus, onClose = () => {} }) {
     return (
       <ListItem>
         {!hasSubMenu && (
-          <Box display="flex" w="100%">
+          <Box display="flex" alignItems="center" w="100%">
+            <Icon as={BsDot} />
             <ActiveLink
               href={`/posts/${data.url}`}
               fontWeight="semibold"
