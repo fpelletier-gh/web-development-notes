@@ -30,6 +30,20 @@ export function LogoSpan(
   );
 }
 
+export function LogoWithoutLink() {
+  return (
+    <Heading
+      as="h1"
+      variant="base"
+      fontSize={{ base: "xl", md: "2xl" }}
+      my={4}
+      mx={2}
+    >
+      <LogoSpan>Web Dev</LogoSpan> Notes
+    </Heading>
+  );
+}
+
 export default function Logo() {
   return (
     <Heading

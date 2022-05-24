@@ -1,9 +1,10 @@
 import Navigation from "./navigation";
-import Logo, { LogoSpan } from "./logo";
+import { LogoWithoutLink as Logo } from "./logo";
 import ActiveLink from "./activeLink";
 import { useRef } from "react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
   UnorderedList,
   ListItem,
@@ -17,12 +18,14 @@ import {
   DrawerOverlay,
   DrawerContent,
   useDisclosure,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import Footer from "./footer";
 
 export default function MenuDrawer({ menuData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+  const borderColor = useColorModeValue("gray.200", "gray.600");
 
   return (
     <>
@@ -60,30 +63,38 @@ export default function MenuDrawer({ menuData }) {
             <Container overflowY="auto">
               <Navigation menus={menuData} onClose={onClose} />
               <UnorderedList listStyleType="none">
-                <ListItem>
+                <ListItem w="100%">
                   <ActiveLink
                     href="/about"
                     fontWeight="semibold"
-                    fontSize={["xl", "md"]}
+                    fontSize={["2xl", "md"]}
                   >
-                    About
+                    <Box w="100%">About</Box>
                   </ActiveLink>
                 </ListItem>
                 <ListItem>
                   <ActiveLink
                     href="/contact"
                     fontWeight="semibold"
-                    fontSize={["xl", "md"]}
+                    fontSize={["2xl", "md"]}
                   >
-                    Contact
+                    <Box w="100%">Contact</Box>
                   </ActiveLink>
                 </ListItem>
               </UnorderedList>
             </Container>
           </DrawerBody>
 
-          <DrawerFooter display="flex" justifyContent="center">
-            <Footer />
+          <DrawerFooter
+            display="flex"
+            justifyContent="center"
+            mt={5}
+            pb="2.2rem"
+            pt="0px"
+            borderTop="1px solid"
+            borderColor={borderColor}
+          >
+            <Footer border="none" mt={0} />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

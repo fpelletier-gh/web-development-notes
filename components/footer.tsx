@@ -13,7 +13,7 @@ import {
   BsPersonCircle,
 } from "react-icons/bs";
 
-export default function Footer() {
+export default function Footer(props) {
   const borderColor = useColorModeValue("gray.200", "gray.700");
   return (
     <HStack
@@ -21,10 +21,12 @@ export default function Footer() {
       spacing="1.5rem"
       borderTop="1px solid"
       borderColor={borderColor}
-      mt={4}
-      pt={4}
+      mt={5}
+      pt={5}
+      pb={["2rem", "0"]}
       alignItems="center"
       justifyContent="center"
+      {...props}
     >
       <Tooltip hasArrow label="Contact me" placement="top">
         <Box>
