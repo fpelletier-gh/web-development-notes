@@ -44,11 +44,11 @@ export default function Navigation({ menus, onClose = () => {} }) {
           </Box>
         )}{" "}
         {hasSubMenu && (
-          <Box display="flex" alignItems="center" w="100%" py="0.3rem">
+          <Box display="flex" alignItems="center" w="100%" pb="0.1" pt="0.3rem">
             <Button
               display="block"
               colorScheme="gray.800"
-              fontSize={["2xl", "xl"]}
+              fontSize={["2xl", "lg"]}
               w="100%"
               whiteSpace="normal"
               textAlign="left"

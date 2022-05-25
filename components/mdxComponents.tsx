@@ -98,7 +98,7 @@ function MdxHeadingSmall(
     darkModeHeadingColor
   );
   return (
-    <Heading color={headingColor} size="sm" py="0.5rem" as="h5" {...props} />
+    <Heading color={headingColor} size="sm" py={2} pt={6} as="h5" {...props} />
   );
 }
 

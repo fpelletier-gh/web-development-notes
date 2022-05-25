@@ -62,8 +62,9 @@ const Heading = {
 
 const Link = {
   baseStyle: (props) => ({
-    letterSpacing: "widest",
+    letterSpacing: "wider",
     textDecoration: "none",
+    fontWeight: "semibold",
   }),
   variants: {
     navigation: (props) => ({
