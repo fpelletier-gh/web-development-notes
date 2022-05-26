@@ -145,7 +145,7 @@ export const components = {
   h4: MdxHeadingMedium,
   h5: MdxHeadingSmall,
   p: MdxText,
-  code: MdxCode,
+  // code: MdxCode,
   table: Table,
   tr: Tr,
   td: Td,
