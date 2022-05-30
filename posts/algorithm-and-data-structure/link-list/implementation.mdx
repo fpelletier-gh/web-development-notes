@@ -1,28 +1,11 @@
 ---
-title: "Link list"
+title: "Linked list"
 date: "2020-01-01"
 ---
 
-### Linked list
+### Linked list implementation
 
-A linked list is a linear collection of data elements, in which linear order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a group of nodes which together represent a sequence. Under the simplest form, each node is composed of data and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. More complex variants add additional links, allowing efficient insertion or removal from arbitrary element references. A drawback of linked lists is that access time is linear (and difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality as compared to linked lists.
-
-##### Define the linklist node:
-
-```javascript
-export default class LinkedListNode {
-  constructor(value, next = null) {
-    this.value = value;
-    this.next = next;
-  }
-
-  toString(callback) {
-    return callback ? callback(this.value) : `${this.value}`;
-  }
-}
-```
-
-##### Comparator:
+##### Comparator function:
 
 - [Comparator utility class](/posts/javascript/data-structure/comparator)
 
@@ -250,29 +233,3 @@ export default class LinkedList {
   }
 }
 ```
-
-##### Traversal:
-```javascript
-export default function traversal(linkedList, callback) {
-  let currentNode = linkedList.head;
-
-  while (currentNode) {
-    callback(currentNode.value);
-    currentNode = currentNode.next;
-  }
-}
-```
-
-##### Reverse traversal:
-```javascript
-function reverseTraversalRecursive(node, callback) {
-  if (node) {
-    reverseTraversalRecursive(node.next, callback);
-    callback(node.value);
-  }
-}
-
-export default function reverseTraversal(linkedList, callback) {
-  reverseTraversalRecursive(linkedList.head, callback);
-}
-``` 

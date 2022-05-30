@@ -1,0 +1,21 @@
+---
+title: "Linked list node"
+date: "2020-01-01"
+---
+
+### Linked list node
+
+##### Define the linklist node:
+
+```javascript
+export default class LinkedListNode {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+
+  toString(callback) {
+    return callback ? callback(this.value) : `${this.value}`;
+  }
+}
+```
