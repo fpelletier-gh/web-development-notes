@@ -1,13 +1,53 @@
 import Head from "next/head";
+import { useState, useEffect } from "react";
 import Footer from "./footer";
 import Navigation from "./navigation";
 import Header from "./header";
-import { Grid, Container, GridItem, useColorModeValue } from "@chakra-ui/react";
+import {
+  Tooltip,
+  Button,
+  Grid,
+  Container,
+  GridItem,
+  Box,
+  Icon,
+} from "@chakra-ui/react";
+import { BsArrowUpCircle } from "react-icons/bs";
 
 export const siteTitle = "Web Development Notes";
 
 export default function Layout({ children, menuData }) {
-  const borderColor = useColorModeValue("gray.200", "gray.600");
+  const [isVisible, setIsVisible] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const showButton = () => {
+      if (typeof window !== "undefined") {
+        if (lastScrollY > 100) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", showButton);
+      showButton();
+      return () => {
+        window.removeEventListener("scroll", showButton);
+      };
+    }
+  }, [lastScrollY]);
+
+  const handleBackToTopButton = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+      setLastScrollY(0);
+    }
+  };
+
   return (
     <Container pt="4rem">
       <Head>
@@ -25,8 +65,6 @@ export default function Layout({ children, menuData }) {
           minH="90vh"
           minW="220px"
           boxShadow="5px -2px 9px -11px black"
-          // borderRight="1px solid"
-          // borderColor={borderColor}
           colSpan={2}
           pr={6}
           py={4}
@@ -46,6 +84,27 @@ export default function Layout({ children, menuData }) {
           pl={6}
         >
           {children}
+          <Box
+            display={isVisible ? "block" : "none"}
+            textAlign="right"
+            pr={8}
+            position="sticky"
+            bottom="30px"
+            zIndex="100"
+          >
+            <Tooltip hasArrow label="Back to top" placement="top">
+              <Button onClick={handleBackToTopButton} variant="transparent">
+                <Icon
+                  bgColor="RGBA(0, 0, 0, 0.10)"
+                  as={BsArrowUpCircle}
+                  borderRadius="50%"
+                  w={8}
+                  h={8}
+                />
+                <br />
+              </Button>
+            </Tooltip>
+          </Box>
           <Footer />
         </GridItem>
       </Grid>
@@ -59,6 +118,25 @@ export default function Layout({ children, menuData }) {
         w="100%"
       >
         {children}
+        <Box
+          display={isVisible ? "block" : "none"}
+          textAlign="right"
+          pr={2}
+          position="sticky"
+          bottom="30px"
+          zIndex="100"
+        >
+          <Button onClick={handleBackToTopButton} variant="transparent">
+            <Icon
+              bgColor="RGBA(0, 0, 0, 0.10)"
+              as={BsArrowUpCircle}
+              borderRadius="50%"
+              w={8}
+              h={8}
+            />
+            <br />
+          </Button>
+        </Box>
         <Footer />
       </GridItem>
     </Container>

@@ -42,6 +42,15 @@ const Button = {
         backgroundColor: mode("gray.200", "gray.700")(props),
       },
     }),
+    transparent: (props) => ({
+      fontSize: "xl",
+      fontWeight: "semibold",
+      color: mode("gray.600", "gray.700")(props),
+      _hover: {
+        textDecoration: "none",
+        color: mode("blue.600", "blue.300")(props),
+      },
+    }),
   },
 };
 
