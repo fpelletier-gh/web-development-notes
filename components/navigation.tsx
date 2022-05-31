@@ -1,8 +1,7 @@
 import ActiveLink from "./activeLink";
 import { BsDot } from "react-icons/bs";
 import { useState } from "react";
-import { useColorModeValue } from "@chakra-ui/react";
-import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronUpIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Button, UnorderedList, ListItem, Icon } from "@chakra-ui/react";
 
 export default function Navigation({ menus, onClose = () => {} }) {
@@ -25,10 +24,9 @@ export default function Navigation({ menus, onClose = () => {} }) {
 
   const ListMenu = ({ dept, data, hasSubMenu, menuName, menuIndex }) => {
     const isActive = activeMenus.includes(menuName);
-    const blue = useColorModeValue("blue.600", "blue.300");
 
     return (
-      <ListItem>
+      <ListItem pb={1}>
         {!hasSubMenu && (
           <Box display="flex" alignItems="center" w="100%">
             <Icon as={BsDot} />
@@ -38,13 +36,28 @@ export default function Navigation({ menus, onClose = () => {} }) {
               onClick={onClose}
               w={"100%"}
               fontSize={["xl", "md"]}
+              lineHeight="1.1rem"
+              pb={[2, 1]}
             >
               {data.title}
             </ActiveLink>
           </Box>
         )}{" "}
         {hasSubMenu && (
-          <Box display="flex" alignItems="center" w="100%" pb="0.1" pt="0.3rem">
+          <Box display="flex" alignItems="center" w="100%" pb={1}>
+            {isActive ? (
+              <ChevronUpIcon
+                mb={1}
+                mr={1}
+                onClick={() => handleSubmenuClick(menuName)}
+              />
+            ) : (
+              <ChevronRightIcon
+                mb={1}
+                mr={1}
+                onClick={() => handleSubmenuClick(menuName)}
+              />
+            )}
             <Button
               display="block"
               colorScheme="gray.800"
@@ -53,21 +66,11 @@ export default function Navigation({ menus, onClose = () => {} }) {
               whiteSpace="normal"
               textAlign="left"
               variant="link"
+              pb={1}
               onClick={() => handleSubmenuClick(menuName)}
             >
               {data.title}
             </Button>
-            {isActive ? (
-              <ChevronUpIcon
-                ml="0.2rem"
-                onClick={() => handleSubmenuClick(menuName)}
-              />
-            ) : (
-              <ChevronDownIcon
-                ml="0.2rem"
-                onClick={() => handleSubmenuClick(menuName)}
-              />
-            )}
           </Box>
         )}
         {hasSubMenu && (
