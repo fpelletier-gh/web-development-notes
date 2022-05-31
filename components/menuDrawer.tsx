@@ -6,8 +6,6 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  UnorderedList,
-  ListItem,
   Container,
   Flex,
   Spacer,
@@ -42,8 +40,8 @@ export default function MenuDrawer({ menuData }) {
       </Button>
       <Drawer
         isOpen={isOpen}
-        placement="top"
-        size="full"
+        placement="right"
+        size="sm"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
@@ -62,31 +60,12 @@ export default function MenuDrawer({ menuData }) {
           <DrawerBody>
             <Container overflowY="auto">
               <Navigation menus={menuData} onClose={onClose} />
-              <UnorderedList listStyleType="none">
-                <ListItem w="100%">
-                  <ActiveLink
-                    href="/about"
-                    fontWeight="semibold"
-                    fontSize={["2xl", "md"]}
-                  >
-                    <Box w="100%">About</Box>
-                  </ActiveLink>
-                </ListItem>
-                <ListItem>
-                  <ActiveLink
-                    href="/contact"
-                    fontWeight="semibold"
-                    fontSize={["2xl", "md"]}
-                  >
-                    <Box w="100%">Contact</Box>
-                  </ActiveLink>
-                </ListItem>
-              </UnorderedList>
             </Container>
           </DrawerBody>
 
           <DrawerFooter
             display="flex"
+            flexDir="column"
             justifyContent="center"
             mt={5}
             pb="2.2rem"
@@ -94,6 +73,22 @@ export default function MenuDrawer({ menuData }) {
             borderTop="1px solid"
             borderColor={borderColor}
           >
+            <Flex justifyContent="space-evenly" w="100%" pt={2}>
+              <ActiveLink
+                href="/about"
+                fontWeight="semibold"
+                fontSize={["xl", "md"]}
+              >
+                <Box w="100%">About</Box>
+              </ActiveLink>
+              <ActiveLink
+                href="/contact"
+                fontWeight="semibold"
+                fontSize={["xl", "md"]}
+              >
+                <Box w="100%">Contact</Box>
+              </ActiveLink>
+            </Flex>
             <Footer border="none" mt={0} />
           </DrawerFooter>
         </DrawerContent>
