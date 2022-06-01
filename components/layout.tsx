@@ -49,7 +49,7 @@ export default function Layout({ children, menuData }) {
   };
 
   return (
-    <Container pt="4rem">
+    <Container variant="siteContainer" pt="4rem">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -59,26 +59,33 @@ export default function Layout({ children, menuData }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <Header menuData={menuData} />
-      <Grid display="grid" templateColumns="repeat(10, 1fr)">
+      <Grid
+        display="grid"
+        templateColumns="repeat(10, 1fr)"
+        w="100%"
+        maxW="1500px"
+        mx="auto"
+      >
         <GridItem
           as="nav"
           minH="90vh"
           minW="220px"
           boxShadow="5px -2px 9px -11px black"
-          colSpan={2}
+          colSpan={3}
           pr={6}
           py={4}
           w="100%"
-          display={{ base: "none", md: "block" }}
+          display={{ base: "none", lg: "block" }}
         >
           <Navigation menus={menuData} />
         </GridItem>
         <GridItem
           as="main"
-          display={{ base: "none", md: "flex" }}
+          display={{ base: "none", lg: "flex" }}
           flexDir="column"
           justifyContent="space-between"
-          colSpan={8}
+          w="100%"
+          colSpan={7}
           p={4}
           pt={6}
           pl={6}
@@ -111,7 +118,7 @@ export default function Layout({ children, menuData }) {
       <GridItem
         as="main"
         minH="90vh"
-        display={{ base: "flex", md: "none" }}
+        display={{ base: "flex", lg: "none" }}
         flexDir="column"
         justifyContent="space-between"
         p={4}

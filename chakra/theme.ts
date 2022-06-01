@@ -8,14 +8,27 @@ const config = {
 const Container = {
   baseStyle: {
     w: "100%",
-    mx: "auto",
-    maxW: "1200px",
     px: "0",
     pb: [2, 4],
     pt: "0",
   },
+  variants: {
+    siteContainer: {
+      mx: "auto",
+      maxW: "100vw",
+      display: "flex",
+      flexDir: "column",
+      justifyContent: "center",
+    },
+    headerContainer: {
+      maxW: "100vw",
+      boxShadow: "0px 5px 9px -11px black",
+      pb: "0",
+    },
+  },
   defaultProps: {
     colorScheme: "gray",
+    variant: "base",
   },
 };
 

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { GetStaticProps } from "next";
 import Layout, { siteTitle } from "../components/layout";
 import { getMenuData } from "../lib/posts";
-import { Heading, Container } from "@chakra-ui/react";
+import { Heading, Box } from "@chakra-ui/react";
 
 export default function Home({ menuData }) {
   return (
@@ -10,7 +10,7 @@ export default function Home({ menuData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <Container
+      <Box
         as="main"
         display="flex"
         flexDirection="column"
@@ -32,7 +32,7 @@ export default function Home({ menuData }) {
           Some personal notes, reference and concept related to JavaScript, Web
           development and Vim.
         </Heading>
-      </Container>
+      </Box>
     </Layout>
   );
 }

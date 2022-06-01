@@ -46,7 +46,7 @@ export default function Post({ postData, menuData }) {
       <Head>
         <title>{postData.frontmatter.title}</title>
       </Head>
-      <Container w="100%">
+      <Container maxW="1200px" w="100%">
         <MDXRemote {...postData} components={components} />
       </Container>
     </Layout>

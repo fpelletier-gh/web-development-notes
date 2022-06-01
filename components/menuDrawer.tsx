@@ -29,7 +29,7 @@ export default function MenuDrawer({ menuData }) {
     <>
       <Button
         ref={btnRef}
-        display={{ base: "block", md: "none" }}
+        display={{ base: "block", lg: "none" }}
         alignSelf="center"
         onClick={onOpen}
         p="2"
