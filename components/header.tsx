@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Container,
   useDisclosure,
   Slide,
@@ -43,59 +42,61 @@ export default function Header({ menuData }) {
 
   return (
     <>
-      <Container variant="headerContainer">
-        <Box
-          position="fixed"
-          top="0px"
-          maxW="100vw"
-          bg={bgColor}
-          display={lastScrollY > 65 ? "none" : null}
-          zIndex="100"
+      <Container
+        variant="headerContainer"
+        position="fixed"
+        top="0px"
+        maxW="100vw"
+        bg={bgColor}
+        display={lastScrollY > 0 ? "none" : null}
+        zIndex="100"
+        w="100%"
+      >
+        <Flex
+          as="header"
+          px={2}
           w="100%"
+          maxW="1500px"
+          h="4rem"
+          alignItems="center"
+          mx="auto"
         >
-          <Flex
-            as="header"
-            px={2}
-            w="100%"
-            maxW="1500px"
-            h="4rem"
-            alignItems="center"
-            mx="auto"
+          <Logo />
+          <Spacer />
+          <ActiveLink
+            href="/about"
+            display={{ base: "none", md: "block" }}
+            m="4"
+            alignSelf="center"
+            fontWeight="bold"
           >
-            <Logo />
-            <Spacer />
-            <ActiveLink
-              href="/about"
-              display={{ base: "none", md: "block" }}
-              m="4"
-              alignSelf="center"
-              fontWeight="bold"
-            >
-              About
-            </ActiveLink>
-            <ActiveLink
-              href="/contact"
-              display={{ base: "none", md: "block" }}
-              m="4"
-              alignSelf="center"
-              fontWeight="bold"
-            >
-              Contact
-            </ActiveLink>
-            <Button
-              onClick={toggleColorMode}
-              alignSelf="center"
-              bg="transparent"
-              _hover={{ background: "transparent" }}
-            >
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-            </Button>
-            <MenuDrawer menuData={menuData} />
-          </Flex>
-        </Box>
+            About
+          </ActiveLink>
+          <ActiveLink
+            href="/contact"
+            display={{ base: "none", md: "block" }}
+            m="4"
+            alignSelf="center"
+            fontWeight="bold"
+          >
+            Contact
+          </ActiveLink>
+          <Button
+            onClick={toggleColorMode}
+            alignSelf="center"
+            bg="transparent"
+            _hover={{ background: "transparent" }}
+          >
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
+          <MenuDrawer menuData={menuData} />
+        </Flex>
       </Container>
       <Slide direction="top" in={isOpen} style={{ zIndex: 10 }}>
-        <Container variant="headerContainer">
+        <Container
+          variant="headerContainer"
+          display={lastScrollY === 0 ? "none" : null}
+        >
           <Flex
             as="header"
             bg={bgColor}
