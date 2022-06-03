@@ -34,7 +34,7 @@ const Container = {
 
 const Button = {
   baseStyle: {
-    letterSpacing: "widest",
+    letterSpacing: "wider",
   },
   variants: {
     link: (props) => ({
