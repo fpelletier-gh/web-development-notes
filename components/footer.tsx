@@ -23,7 +23,6 @@ export default function Footer(props) {
       borderColor={borderColor}
       mt={5}
       pt={5}
-      pb={["2rem", "0"]}
       alignItems="center"
       justifyContent="center"
       {...props}
