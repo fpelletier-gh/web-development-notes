@@ -68,7 +68,6 @@ export default function MenuDrawer({ menuData }) {
             flexDir="column"
             justifyContent="center"
             mt={5}
-            pb="2.2rem"
             pt="0px"
             borderTop="1px solid"
             borderColor={borderColor}
