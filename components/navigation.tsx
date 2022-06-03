@@ -29,7 +29,7 @@ export default function Navigation({ menus, onClose = () => {} }) {
       <ListItem pb={1}>
         {!hasSubMenu && (
           <Box display="flex" alignItems="center" w="100%">
-            <Icon as={BsDot} />
+            <Icon as={BsDot} pb={[2, 1]} h="100%" />
             <ActiveLink
               href={`/posts/${data.url}`}
               fontWeight="semibold"
