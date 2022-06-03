@@ -61,7 +61,7 @@ export default function Layout({ children, menuData }) {
       <Header menuData={menuData} />
       <Grid
         display="grid"
-        templateColumns="repeat(10, 1fr)"
+        templateColumns="repeat(4, 1fr)"
         w="100%"
         maxW="1500px"
         mx="auto"
@@ -71,7 +71,7 @@ export default function Layout({ children, menuData }) {
           minH="90vh"
           minW="220px"
           boxShadow="5px -2px 9px -11px black"
-          colSpan={3}
+          colSpan={1}
           pr={6}
           py={4}
           w="100%"
@@ -85,7 +85,7 @@ export default function Layout({ children, menuData }) {
           flexDir="column"
           justifyContent="space-between"
           w="100%"
-          colSpan={7}
+          colSpan={3}
           p={4}
           pt={6}
           pl={6}
