@@ -39,7 +39,7 @@ const Button = {
   variants: {
     link: (props) => ({
       fontSize: "xl",
-      fontWeight: "semibold",
+      fontWeight: "normal",
       _hover: {
         textDecoration: "none",
         color: mode("blue.600", "blue.300")(props),
