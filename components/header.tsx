@@ -87,7 +87,11 @@ export default function Header({ menuData }) {
             bg="transparent"
             _hover={{ background: "transparent" }}
           >
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            {colorMode === "light" ? (
+              <MoonIcon _hover={{ color: "blue.600" }} />
+            ) : (
+              <SunIcon _hover={{ color: "blue.300" }} />
+            )}
           </Button>
           <MenuDrawer menuData={menuData} />
         </Flex>
@@ -134,7 +138,11 @@ export default function Header({ menuData }) {
               bg="transparent"
               _hover={{ background: "transparent" }}
             >
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              {colorMode === "light" ? (
+                <MoonIcon _hover={{ color: "blue.600" }} />
+              ) : (
+                <SunIcon _hover={{ color: "blue.300" }} />
+              )}
             </Button>
             <MenuDrawer menuData={menuData} />
           </Flex>
