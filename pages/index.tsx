@@ -24,6 +24,7 @@ export default function Home({ menuData }) {
         <Heading
           as="h4"
           size="md"
+          fontWeight="normal"
           variant="base"
           maxW="60ch"
           textAlign="center"
