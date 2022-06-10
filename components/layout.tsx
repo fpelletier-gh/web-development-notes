@@ -63,16 +63,16 @@ export default function Layout({ children, menuData }) {
         display="grid"
         templateColumns="repeat(4, 1fr)"
         w="100%"
-        maxW="1500px"
+        maxW="1024px"
         mx="auto"
       >
         <GridItem
           as="nav"
           minH="90vh"
-          minW="220px"
+          minW="300px"
           boxShadow="5px -2px 9px -11px black"
           colSpan={1}
-          pr={6}
+          pr={4}
           py={4}
           w="100%"
           display={{ base: "none", lg: "block" }}
@@ -88,7 +88,8 @@ export default function Layout({ children, menuData }) {
           colSpan={3}
           p={4}
           pt={6}
-          pl={6}
+          pl={10}
+          pr={6}
         >
           {children}
           <Box
@@ -122,6 +123,7 @@ export default function Layout({ children, menuData }) {
         flexDir="column"
         justifyContent="space-between"
         p={4}
+        px={[5, 10]}
         w="100%"
       >
         {children}

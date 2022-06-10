@@ -54,9 +54,9 @@ export default function Header({ menuData }) {
       >
         <Flex
           as="header"
-          px={2}
+          px={3}
           w="100%"
-          maxW="1500px"
+          maxW="1024px"
           h="4rem"
           alignItems="center"
           mx="auto"
@@ -104,9 +104,9 @@ export default function Header({ menuData }) {
           <Flex
             as="header"
             bg={bgColor}
-            px={2}
+            px={3}
             w="100%"
-            maxW="1500px"
+            maxW="1024px"
             h="4rem"
             alignItems="center"
             m="auto"
