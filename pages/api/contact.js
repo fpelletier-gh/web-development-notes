@@ -1,8 +1,7 @@
 export default function contactFormEmail(req, res) {
   let nodemailer = require("nodemailer");
   const transporter = nodemailer.createTransport({
-    port: 465,
-    host: "smtp.gmail.com",
+    service: "gmail",
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD,
