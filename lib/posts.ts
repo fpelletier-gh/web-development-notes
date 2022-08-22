@@ -56,7 +56,7 @@ export function getMenuData() {
 
   function prettifyNavigationTitle(title: string) {
     return title
-      .split("-")
+      .split("_")
       .map(function capitalize(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
       })
