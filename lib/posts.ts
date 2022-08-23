@@ -56,11 +56,11 @@ export function getMenuData() {
 
   function prettifyNavigationTitle(title: string) {
     return title
-      .split("_")
-      .map(function capitalize(word) {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      })
-      .join(" ");
+      .replace(/^[_]*(.)/, (_, c) => c.toUpperCase())
+      .replace(/[_]+(.)/g, (_, c) => " " + c.toUpperCase())
+      .replace(/[-]+(.)/g, (_, c) => "-" + c.toUpperCase())
+      .replace(/[_]/g, "")
+      .replace(/ and /gi, " & ");
   }
 
   function createNestedArray(slugs: any[]) {
