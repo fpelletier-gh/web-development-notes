@@ -43,7 +43,7 @@ export default function Footer(props) {
       </Tooltip>
       <Tooltip hasArrow label="Portfolio" placement="top">
         <Box>
-          <ActiveLink href="https://francispelletier.netlify.app">
+          <ActiveLink href="https://francispelletier.ca">
             <Icon as={BsPersonCircle} w={5} h={5} />
           </ActiveLink>
         </Box>
