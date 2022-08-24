@@ -101,7 +101,7 @@ Create a `.mdx`[(MDX)](https://mdxjs.com/docs/) file in the `/posts` folder.
 
 The side menu navigation will be generated from the folder structure inside the `/posts` directory.
 
-> ex. `/posts/javascript/algorithm_and_data-structure.mdx` will create a submenu named `Javascript` with a link named `Algorithm & Data Structure` inside it
+> ex. `/posts/javascript/algorithm_and_data-structure.mdx` will create a submenu named `Javascript` with a link named `Algorithm & Data-Structure` inside it
 
 ### Syntax highlighting for code block
 
