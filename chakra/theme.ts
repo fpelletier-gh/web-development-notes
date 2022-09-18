@@ -139,6 +139,9 @@ const global = (props) => ({
       color: mode("blue.600", "blue.300")(props),
     },
   },
+  pre: {
+    mb: "3rem !important",
+  },
 });
 
 const theme = extendTheme({

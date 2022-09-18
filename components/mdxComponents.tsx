@@ -37,7 +37,16 @@ function MdxHeadingXXLarge(
     lightModeHeadingColor,
     darkModeHeadingColor
   );
-  return <Heading color={headingColor} size="2xl" as="h1" {...props} />;
+  return (
+    <Heading
+      color={headingColor}
+      pt="4rem"
+      pb="1rem"
+      size="xl"
+      as="h1"
+      {...props}
+    />
+  );
 }
 
 function MdxHeadingXLarge(
@@ -52,7 +61,16 @@ function MdxHeadingXLarge(
     lightModeHeadingColor,
     darkModeHeadingColor
   );
-  return <Heading color={headingColor} size="xl" as="h2" {...props} />;
+  return (
+    <Heading
+      color={headingColor}
+      pt="2rem"
+      pb="1rem"
+      size="lg"
+      as="h2"
+      {...props}
+    />
+  );
 }
 
 function MdxHeadingLarge(
@@ -67,7 +85,17 @@ function MdxHeadingLarge(
     lightModeHeadingColor,
     darkModeHeadingColor
   );
-  return <Heading color={headingColor} size="lg" as="h3" pb={4} {...props} />;
+  return (
+    <Heading
+      color={headingColor}
+      pt="2rem"
+      pb="1rem"
+      size="md"
+      as="h3"
+      pb={4}
+      {...props}
+    />
+  );
 }
 
 function MdxHeadingMedium(
@@ -82,7 +110,16 @@ function MdxHeadingMedium(
     lightModeHeadingColor,
     darkModeHeadingColor
   );
-  return <Heading color={headingColor} size="md" as="h4" {...props} />;
+  return (
+    <Heading
+      color={headingColor}
+      pt="2rem"
+      pb="1rem"
+      size="md"
+      as="h4"
+      {...props}
+    />
+  );
 }
 
 function MdxHeadingSmall(
@@ -98,7 +135,16 @@ function MdxHeadingSmall(
     darkModeHeadingColor
   );
   return (
-    <Heading color={headingColor} size="sm" py={2} pt={6} as="h5" {...props} />
+    <Heading
+      color={headingColor}
+      pt="2rem"
+      pb="1rem"
+      size="sm"
+      py={2}
+      pt={6}
+      as="h5"
+      {...props}
+    />
   );
 }
 
