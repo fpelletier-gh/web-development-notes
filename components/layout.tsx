@@ -45,14 +45,14 @@ export default function Layout({ children, menuData }) {
     if (typeof window !== "undefined") {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
       setLastScrollY(0);
     }
   };
 
   return (
-    <Container variant="siteContainer" pt="4rem">
+    <Container variant="siteContainer" pb="0px">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -63,18 +63,23 @@ export default function Layout({ children, menuData }) {
       </Head>
       <Header menuData={menuData} />
       <Grid
-        display="grid"
+        display={["none", "none", "none", "grid"]}
         templateColumns="repeat(4, 1fr)"
+        templateRows="90vh auto"
         w="100%"
         maxW="1024px"
         mx="auto"
       >
         <GridItem
-          as="nav"
+          position="sticky"
+          top="4rem"
+          overflow="auto"
           minH="90vh"
+          as="nav"
           minW="300px"
           boxShadow="5px -2px 9px -11px black"
           colSpan={1}
+          rowSpan={1}
           pr={4}
           py={4}
           w="100%"
@@ -89,6 +94,7 @@ export default function Layout({ children, menuData }) {
           justifyContent="space-between"
           w="100%"
           colSpan={3}
+          rowSpan={2}
           p={4}
           pt={6}
           pl={10}
