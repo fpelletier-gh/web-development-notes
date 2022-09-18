@@ -3,14 +3,16 @@ title: "Git Cheat Sheet"
 date: "2020-01-01"
 ---
 
-##### General command
+## Useful Command
 
-Get documentation for a command:   
+### General command
+
+Get documentation for a command:  
 `$ git help [command]`
 
 Setting user name and email:  
 `$ git config --global user.name "Name"`  
-`$ git config --global user.email [email]`  
+`$ git config --global user.email [email]`
 
 Initializing a new git repository:  
 `$ git init`
@@ -24,7 +26,7 @@ Showing a list of everything across all branch
 Going back in time  
 `$ git reset HEAD@{index}`
 
-##### Adding file
+### Adding file
 
 Adding all new files or modified files under the current directory:  
 `$ git add .`
@@ -35,7 +37,7 @@ Adding files:
 See what is about to be committed:  
 `$ git diff --cached`
 
-##### Commit
+### Commit
 
 Committing changes:  
 `$ git commit`
@@ -49,7 +51,7 @@ Changing the message on last commit
 Adding to the last commit  
 `$ git commit --amend --no-edit`
 
-##### Project history
+### Project history
 
 Project history:  
 `$ git log`
@@ -60,7 +62,7 @@ Project history with diff:
 Project history summary:  
 `$ git log --stat --summary`
 
-##### Branching
+### Branching
 
 Creating a new branch:  
 `$ git branch [branch]`
@@ -74,7 +76,7 @@ Switching to a branch:
 Deleting branch  
 `$ git branch -d [branch]`
 
-##### Merging
+### Merging
 
 Merging a branch:  
 `$ git merge [branch]`
@@ -88,6 +90,6 @@ Commit after resolving the conflicts:
 Graphical representation of the resulting history:  
 `gitk`
 
-Delete the merged branch  
+Delete the merged branch
 
-##### Pulling change 
+### Pulling change

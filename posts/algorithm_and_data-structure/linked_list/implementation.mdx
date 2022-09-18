@@ -3,13 +3,17 @@ title: "Linked list"
 date: "2020-01-01"
 ---
 
-### Linked list implementation
+## Linked list implementation
 
-##### Comparator function:
+### Define the linked list node:
 
-- [Comparator utility class](/posts/javascript/data-structure/comparator)
+- [Linked list node](/posts/javascript/algorithm_and_data_structure/linked_list/define_a_node)
 
-##### Link list implementation:
+### Comparator function
+
+- [Comparator utility class](/posts/javascript/algorithm_and_data_structure/comparator_function)
+
+### Constructor
 
 ```javascript
 export default class LinkedList {
@@ -20,7 +24,11 @@ export default class LinkedList {
 
     this.compare = new Comparator(comparatorFunction);
   }
+```
 
+### Prepend
+
+```javascript
   prepend(value) {
     // Make new node to be a head.
     const newNode = new LinkedListNode(value, this.head);
@@ -33,7 +41,11 @@ export default class LinkedList {
 
     return this;
   }
+```
 
+### Append
+
+```javascript
   append(value) {
     const newNode = new LinkedListNode(value);
 
@@ -51,7 +63,11 @@ export default class LinkedList {
 
     return this;
   }
+```
 
+### Insert
+
+```javascript
   insert(value, rawIndex) {
     const index = rawIndex < 0 ? 0 : rawIndex;
     if (index === 0) {
@@ -80,7 +96,11 @@ export default class LinkedList {
     }
     return this;
   }
+```
 
+### Delete
+
+```javascript
   delete(value) {
     if (!this.head) {
       return null;
@@ -116,7 +136,11 @@ export default class LinkedList {
 
     return deletedNode;
   }
+```
 
+### Find
+
+```javascript
   find({ value = undefined, callback = undefined }) {
     if (!this.head) {
       return null;
@@ -140,7 +164,11 @@ export default class LinkedList {
 
     return null;
   }
+```
 
+### Delete Tail
+
+```javascript
   deleteTail() {
     const deletedTail = this.tail;
 
@@ -168,7 +196,11 @@ export default class LinkedList {
 
     return deletedTail;
   }
+```
 
+### Delete Head
+
+```javascript
   deleteHead() {
     if (!this.head) {
       return null;
@@ -185,7 +217,11 @@ export default class LinkedList {
 
     return deletedHead;
   }
+```
 
+### From Array
+
+```javascript
   fromArray(values) {
     values.forEach((value) => this.append(value));
 
@@ -204,10 +240,19 @@ export default class LinkedList {
     return nodes;
   }
 
+```
+
+### To String
+
+```javascript
   toString(callback) {
     return this.toArray().map((node) => node.toString(callback)).toString();
   }
+```
 
+### Reverse
+
+```javascript
   reverse() {
     let currNode = this.head;
     let prevNode = null;

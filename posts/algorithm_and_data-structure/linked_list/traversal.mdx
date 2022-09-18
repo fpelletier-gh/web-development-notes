@@ -3,9 +3,10 @@ title: "Linked list traversal"
 date: "2020-01-01"
 ---
 
-### Linked list traversal
+## Linked list traversal
 
-##### Traversal:
+### Traversal
+
 ```javascript
 export default function traversal(linkedList, callback) {
   let currentNode = linkedList.head;
@@ -17,7 +18,8 @@ export default function traversal(linkedList, callback) {
 }
 ```
 
-##### Reverse traversal:
+### Reverse traversal
+
 ```javascript
 function reverseTraversalRecursive(node, callback) {
   if (node) {
@@ -29,4 +31,4 @@ function reverseTraversalRecursive(node, callback) {
 export default function reverseTraversal(linkedList, callback) {
   reverseTraversalRecursive(linkedList.head, callback);
 }
-``` 
+```
