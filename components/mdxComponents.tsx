@@ -1,4 +1,9 @@
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerContent,
   UnorderedList,
   ListItem,
   Divider,
@@ -17,6 +22,9 @@ import {
   OmitCommonProps,
   TextProps,
   CodeProps,
+  Button,
+  useDisclosure,
+  Flex,
 } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
@@ -92,7 +100,6 @@ function MdxHeadingLarge(
       pb="1rem"
       size="md"
       as="h3"
-      pb={4}
       {...props}
     />
   );
@@ -141,7 +148,6 @@ function MdxHeadingSmall(
       pb="1rem"
       size="sm"
       py={2}
-      pt={6}
       as="h5"
       {...props}
     />
@@ -174,11 +180,57 @@ function MdxCode(
 }
 
 function MdxListItem(props) {
-  return <ListItem {...props} />;
+  return <ListItem listStyleType="none" {...props} />;
 }
 
 function MdxUnorderedList(props) {
   return <UnorderedList {...props} />;
+}
+
+function Toc({ children, ...props }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <Flex
+        w="50%"
+        display="inline-flex"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+      >
+        <Button p="0px" variant="transparent" onClick={onOpen}>
+          <MdxHeadingLarge textDecoration="underline" my="0px" py="0px">
+            Table of contents
+          </MdxHeadingLarge>
+        </Button>
+      </Flex>
+      <Flex
+        display="inline-flex"
+        w="50%"
+        top="5rem"
+        mt="0px"
+        py={4}
+        pr={2}
+        position="sticky"
+        alignItems="center"
+        justifyContent="flex-end"
+      >
+        <Button zIndex="5" mt="0px" variant="transparent" onClick={onOpen}>
+          <HamburgerIcon w={6} h={6} />
+        </Button>
+      </Flex>
+      <Drawer
+        blockScrollOnMount={false}
+        placement="right"
+        onClose={onClose}
+        isOpen={isOpen}
+      >
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth="1px">Table of contents</DrawerHeader>
+          <DrawerBody>{children}</DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
 }
 
 export const components = {
@@ -202,4 +254,5 @@ export const components = {
   tfoot: Tfoot,
   Code,
   Divider,
+  Toc,
 };

@@ -129,6 +129,7 @@ const global = (props) => ({
     letterSpacing: "wider",
     lineHeight: "tall",
     fontFamily: "'Roboto flex', sans-serif",
+    scrollBehavior: "smooth",
   },
   a: {
     letterSpacing: "widest",
