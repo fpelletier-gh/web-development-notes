@@ -42,7 +42,6 @@ export default function Header({ menuData }) {
             display={{ base: "none", md: "block" }}
             m="4"
             alignSelf="center"
-            fontWeight="bold"
           >
             About
           </ActiveLink>
@@ -51,7 +50,6 @@ export default function Header({ menuData }) {
             display={{ base: "none", md: "block" }}
             m="4"
             alignSelf="center"
-            fontWeight="bold"
           >
             Contact
           </ActiveLink>

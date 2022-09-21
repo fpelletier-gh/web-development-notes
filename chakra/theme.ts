@@ -86,7 +86,7 @@ const Link = {
   baseStyle: (props) => ({
     letterSpacing: "wider",
     textDecoration: "none",
-    fontWeight: "semibold",
+    fontWeight: "normal",
   }),
   variants: {
     navigation: (props) => ({
