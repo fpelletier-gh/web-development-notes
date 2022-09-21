@@ -225,11 +225,48 @@ function Toc({ children, ...props }) {
         isOpen={isOpen}
       >
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Table of contents</DrawerHeader>
-          <DrawerBody>{children}</DrawerBody>
+          <DrawerHeader borderBottomWidth="1px">
+            <Flex alignItems="center">
+              Table of contents
+              <Spacer />
+              <Button bg="transparent" onClick={onClose}>
+                <CloseIcon w={4} h={4} />
+              </Button>
+            </Flex>
+          </DrawerHeader>
+          <DrawerBody>
+            <Box py={3} overflowY="auto">
+              {children}
+            </Box>
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
+  );
+}
+
+function MdxBlockquote({ children, ...props }) {
+  const borderColor = useColorModeValue(
+    lightModeHeadingColor,
+    darkModeHeadingColor
+  );
+  const color = useColorModeValue("gray.600", "gray.300");
+  return (
+    <Box
+      as="blockquote"
+      border="none"
+      borderLeft="4px solid"
+      borderColor={borderColor}
+      color={color}
+      pl={3}
+      pt={1}
+      mb={6}
+      mt={1}
+      fontStyle="italic"
+      {...props}
+    >
+      {children}
+    </Box>
   );
 }
 
@@ -243,6 +280,7 @@ export const components = {
   h4: MdxHeadingMedium,
   h5: MdxHeadingSmall,
   p: MdxText,
+  blockquote: MdxBlockquote,
   code: MdxCode,
   table: Table,
   tr: Tr,
