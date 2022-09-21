@@ -1,4 +1,4 @@
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Drawer,
   DrawerBody,
@@ -25,8 +25,11 @@ import {
   Button,
   useDisclosure,
   Flex,
+  useColorModeValue,
+  Box,
+  Spacer,
+  Tooltip,
 } from "@chakra-ui/react";
-import { useColorModeValue } from "@chakra-ui/react";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import ActiveLink from "./activeLink";
 
@@ -191,32 +194,29 @@ function Toc({ children, ...props }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Flex
-        w="50%"
-        display="inline-flex"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-      >
+      <Flex w="50%" display="inline-block">
         <Button p="0px" variant="transparent" onClick={onOpen}>
-          <MdxHeadingLarge textDecoration="underline" my="0px" py="0px">
+          <MdxHeadingLarge borderBottom="3px solid" my="0px" py="0px">
             Table of contents
           </MdxHeadingLarge>
         </Button>
       </Flex>
       <Flex
-        display="inline-flex"
+        display="inline-block"
         w="50%"
         top="5rem"
         mt="0px"
         py={4}
         pr={2}
         position="sticky"
-        alignItems="center"
-        justifyContent="flex-end"
+        textAlign="right"
+        zIndex="5"
       >
-        <Button zIndex="5" mt="0px" variant="transparent" onClick={onOpen}>
-          <HamburgerIcon w={6} h={6} />
-        </Button>
+        <Tooltip hasArrow label="Table of contents" placement="top">
+          <Button mt="0px" variant="transparent" onClick={onOpen}>
+            <HamburgerIcon w={6} h={6} />
+          </Button>
+        </Tooltip>
       </Flex>
       <Drawer
         blockScrollOnMount={false}
