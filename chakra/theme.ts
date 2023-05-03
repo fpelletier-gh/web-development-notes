@@ -77,9 +77,6 @@ const Heading = {
       color: mode("blue.600", "blue.300")(props),
     }),
   },
-  defaultProps: {
-    variant: "blue",
-  },
 };
 
 const Link = {
@@ -134,10 +131,11 @@ const global = (props) => ({
   a: {
     letterSpacing: "widest",
     textDecoration: "none",
+    color: mode("blue.600", "blue.300")(props),
     _hover: {
       textDecoration: "none",
       borderColor: mode("blue.600", "blue.300")(props),
-      color: mode("blue.600", "blue.300")(props),
+      color: mode("blue.700", "blue.400")(props),
     },
   },
   pre: {

@@ -44,20 +44,7 @@ function MdxHeadingXXLarge(
     > &
     HeadingProps & { as?: "h2" }
 ) {
-  const headingColor = useColorModeValue(
-    lightModeHeadingColor,
-    darkModeHeadingColor
-  );
-  return (
-    <Heading
-      color={headingColor}
-      pt="4rem"
-      pb="1rem"
-      size="xl"
-      as="h1"
-      {...props}
-    />
-  );
+  return <Heading pt="4rem" pb="1rem" size="xl" as="h1" {...props} />;
 }
 
 function MdxHeadingXLarge(
@@ -68,20 +55,7 @@ function MdxHeadingXLarge(
     > &
     HeadingProps & { as?: "h2" }
 ) {
-  const headingColor = useColorModeValue(
-    lightModeHeadingColor,
-    darkModeHeadingColor
-  );
-  return (
-    <Heading
-      color={headingColor}
-      pt="2rem"
-      pb="1rem"
-      size="lg"
-      as="h2"
-      {...props}
-    />
-  );
+  return <Heading pt="2rem" pb="1rem" size="lg" as="h2" {...props} />;
 }
 
 function MdxHeadingLarge(
@@ -92,20 +66,7 @@ function MdxHeadingLarge(
     > &
     HeadingProps & { as?: "h2" }
 ) {
-  const headingColor = useColorModeValue(
-    lightModeHeadingColor,
-    darkModeHeadingColor
-  );
-  return (
-    <Heading
-      color={headingColor}
-      pt="2rem"
-      pb="1rem"
-      size="md"
-      as="h3"
-      {...props}
-    />
-  );
+  return <Heading pt="2rem" pb="1rem" size="md" as="h3" {...props} />;
 }
 
 function MdxHeadingMedium(
@@ -116,20 +77,7 @@ function MdxHeadingMedium(
     > &
     HeadingProps & { as?: "h2" }
 ) {
-  const headingColor = useColorModeValue(
-    lightModeHeadingColor,
-    darkModeHeadingColor
-  );
-  return (
-    <Heading
-      color={headingColor}
-      pt="2rem"
-      pb="1rem"
-      size="md"
-      as="h4"
-      {...props}
-    />
-  );
+  return <Heading pt="2rem" pb="1rem" size="md" as="h4" {...props} />;
 }
 
 function MdxHeadingSmall(
@@ -140,21 +88,7 @@ function MdxHeadingSmall(
     > &
     HeadingProps & { as?: "h2" }
 ) {
-  const headingColor = useColorModeValue(
-    lightModeHeadingColor,
-    darkModeHeadingColor
-  );
-  return (
-    <Heading
-      color={headingColor}
-      pt="2rem"
-      pb="1rem"
-      size="sm"
-      py={2}
-      as="h5"
-      {...props}
-    />
-  );
+  return <Heading pt="2rem" pb="1rem" size="sm" py={2} as="h5" {...props} />;
 }
 
 function MdxText(
@@ -179,7 +113,7 @@ function MdxCode(
     > &
     CodeProps & { as?: "code" }
 ) {
-  return <Code {...props} />;
+  return <Code px="2" {...props} />;
 }
 
 function MdxListItem(props) {
